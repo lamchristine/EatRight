@@ -1,0 +1,21 @@
+{
+  "name": "EatRight",
+  "homepage": "https://github.com/lamchristine/EatRight",
+  "authors": [
+    "lamchristine <christine.lam.06@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8"
+  }
+}
