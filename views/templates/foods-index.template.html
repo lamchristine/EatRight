@@ -1,13 +1,19 @@
 <h2>Food</h2>
 
   <form ng-submit="foodsIndexCtrl.search()">
-    <input ng-model="foodsIndexCtrl.searchTerm" type="text" id="search" placeholder="Starbucsk">
-    <button type="submit">Search</button>
+    <input ng-model="foodsIndexCtrl.searchTerm" type="text" id="search" placeholder="Starbucks">
+    <button type="submit" ng-click="results = !results">Search</button>
   </form>
+
+<div ng-show="results">
+  <h2>Search Results for:{{foodsIndexCtrl.searchTerm}} </h2>
 
   <div ng-repeat="food in foodsIndexCtrl.foodList">
     <strong>Food:</strong> {{food.fields.item_name}}, <strong>Calories: </strong> {{food.fields.nf_calories}}
+    {{food.fields.images_front_full_url}}
   </div>
+
+</div>
 <!-- <input type="text" ng-model="search" class="form-control" placeholder="Search Food">
 <input type="hidden" name="appKey" value="ecd9dbdbeb3528353f71335e422e8653">
 <input type="hidden" name="appId" value="285dc9c7">
