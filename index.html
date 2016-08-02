@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app"EatRight">
+<html lang="en" ng-app="EatRight">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,18 +8,20 @@
     <link rel="stylesheet" href="styles/styles.css">
 
     <!-- VENDOR SCRIPTS -->
+    <script src="/bower_components/lodash/lodash.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-route/angular-route.min.js"></script>
 
     <!-- APPLICATION SCRIPTS -->
     <script src="/scripts/app.js"></script>
-    <script src="/scripts/controllers/EatRightIndexController.js"></script>
+    <script src="/scripts/controllers/FoodsIndex.controller.js"></script>
+    <script src="/scripts/services/food.service.js"></script>
 
     <title>EatRight</title>
   </head>
 
   <body>
-    <h1>Hello World</h1>
+    <h1>Foods Search</h1>
     <div ng-view></div>
   </body>
 
