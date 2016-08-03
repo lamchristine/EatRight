@@ -10,15 +10,17 @@
   <h2>Search Results for:{{foodsIndexCtrl.searchTerm}} </h2>
 
   <div ng-repeat="food in foodsIndexCtrl.foodList">
-    <strong>Item: </strong><a ng-click="info=true" href="">{{food.fields.item_name}} ({{food.fields.brand_name}})</a>
+    <strong>Item: </strong>{{food.fields.item_name}} ({{food.fields.brand_name}})
+    <button ng-click="info = true" ng-hide="info">Show Info</button>
+    <button ng-click="info = false" ng-show="info">Close Info</button>
     <div ng-show="info">
       <strong>Calories: </strong> {{food.fields.nf_calories}} <span ng-if="!food.fields.nf_calories">0 </span> kcal
-      <strong>Total Fat: </strong> {{food.fields.nf_total_fat}} <span ng-if="!food.fields.nf_total_fat">0 </span> g
+      <strong>Total Fat: </strong> {{food.fields.nf_total_fat}} g
       <strong>Polyunsaturated Fat: </strong>{{food.fields.nf_polyunsaturated_fat}} <span ng-if="!food.fields.nf_polyunsaturated_fat">0 </span> g
       <strong>Monounsaturated Fat: </strong> {{food.fields.nf_monounsaturated_fat}} <span ng-if="!food.fields.nf_monounsaturated_fat">0 </span> g
-      <strong>Saturated Fat: </strong> {{food.fields.nf_saturated_fat}} <span ng-if="!food.fields.nf_saturated_fat">0 </span> g
-      <strong>Sodium: </strong> {{food.fields.nf_sodium}} <span ng-if="!food.fields.nf_sodium">0 </span> mg
-      <strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} <span ng-if="!food.fields.nf_cholesterol">0 </span> mg
+      <strong>Saturated Fat: </strong> {{food.fields.nf_saturated_fat}} g
+      <strong>Sodium: </strong> {{food.fields.nf_sodium}} mg
+      <strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} mg
     </div>
   </div>
 </div>
