@@ -2,30 +2,23 @@
 
   <form ng-submit="foodsIndexCtrl.search()">
     <input ng-model="foodsIndexCtrl.searchTerm" type="text" id="search" placeholder="Starbucks">
-    <button type="submit" ng-click="results = !results">Search</button>
-  </form>
-    <button ng-click="results = false; foodsIndexCtrl.searchTerm = ''">Clear</button>
+    <button type="submit" ng-click="results = true">Search</button>
 
+    <button ng-click="results = false; foodsIndexCtrl.searchTerm = ''">Clear</button>
+  </form>
 <div ng-show="results">
   <h2>Search Results for:{{foodsIndexCtrl.searchTerm}} </h2>
 
   <div ng-repeat="food in foodsIndexCtrl.foodList">
-    <strong>Food:</strong> {{food.fields.item_name}}, <strong>Calories: </strong> {{food.fields.nf_calories}}
-    {{food.fields.images_front_full_url}}
+    <strong>Item: </strong><a ng-click="info=true" href="">{{food.fields.item_name}} ({{food.fields.brand_name}})</a>
+    <div ng-show="info">
+      <strong>Calories: </strong> {{food.fields.nf_calories}} <span ng-if="!food.fields.nf_calories">0 </span> kcal
+      <strong>Total Fat: </strong> {{food.fields.nf_total_fat}} <span ng-if="!food.fields.nf_total_fat">0 </span> g
+      <strong>Polyunsaturated Fat: </strong>{{food.fields.nf_polyunsaturated_fat}} <span ng-if="!food.fields.nf_polyunsaturated_fat">0 </span> g
+      <strong>Monounsaturated Fat: </strong> {{food.fields.nf_monounsaturated_fat}} <span ng-if="!food.fields.nf_monounsaturated_fat">0 </span> g
+      <strong>Saturated Fat: </strong> {{food.fields.nf_saturated_fat}} <span ng-if="!food.fields.nf_saturated_fat">0 </span> g
+      <strong>Sodium: </strong> {{food.fields.nf_sodium}} <span ng-if="!food.fields.nf_sodium">0 </span> mg
+      <strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} <span ng-if="!food.fields.nf_cholesterol">0 </span> mg
+    </div>
   </div>
-
 </div>
-<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search Food">
-<input type="hidden" name="appKey" value="ecd9dbdbeb3528353f71335e422e8653">
-<input type="hidden" name="appId" value="285dc9c7">
-<button ng-click="findFood()">Submit</button> -->
-
-
-<!-- <div ng-repeat="item in EatRightIndexCtrl.items">
-  <p><strong>Food Item:</strong> {{item.fields.item_name}}, <strong>Calories: </strong>{{item.fields.nf_calories}}</p>
-</div> -->
-
-<!--
-<input type="text" ng-model="search" name="q" value="cats" class="form-control" placeholder="Search Food">
-<input type="hidden" name="api_key" value="dc6zaTOxFJmzC">
-<input type="submit" value="GO!"> -->

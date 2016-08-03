@@ -27,9 +27,4 @@ function FoodsIndexController (FoodService) {
     });
   }
 
-  function clear() {
-      vm.foodList = "";
-    }
-  
-
 }
