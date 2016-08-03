@@ -1,0 +1,34 @@
+{
+  "name": "eatright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamchristine/EatRight.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lamchristine/EatRight/issues"
+  },
+  "homepage": "https://github.com/lamchristine/EatRight#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.2",
+    "bower": "^1.7.9",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "hbs": "^4.0.0",
+    "jwt-simple": "^0.5.0",
+    "moment": "^2.14.1",
+    "mongoose": "^4.5.8",
+    "morgan": "^1.7.0"
+  }
+}

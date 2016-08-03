@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="EatRight">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- STYLESSHEETS -->
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- VENDOR SCRIPTS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/satellizer/0.13.4/satellizer.min.js"></script>
+
+    <!-- APPLICATION SCRIPTS -->
+    <script src="scripts/controllers/FoodsIndex.controller.js"></script>
+    <script src="scripts/services/food.service.js"></script>
+    <script type="text/javascript" src="scripts/controllers/main.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/auth-login.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/auth-logout.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/user-signup.controller.js"></script>
+    <script type="text/javascript" src="scripts/services/user.service.js"></script>
+    <script type="text/javascript" src="scripts/routes.js"></script>
+    <script src="scripts/app.js"></script>
+
+    <title>EatRight</title>
+  </head>
+
+  <body ng-controller="MainController as main">
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-show="!main.currentUser.isLoggedIn()"><a href="/signup">Sign Up</a></li>
+      <li ng-show="!main.currentUser.isLoggedIn()"><a href="/login">Log In</a></li>
+      <li ng-show="main.currentUser.isLoggedIn()"><a href="/logout">Log Out</a></li>
+    </ul>
+
+    <h1>Foods Search</h1>
+
+    <div ng-view></div>
+  </body>
+
+</html>

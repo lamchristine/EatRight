@@ -1,7 +1,3 @@
-angular
-  .module('EatRight')
-  .service('FoodService', FoodService);
-
 FoodService.$inject = ['$http', '$q'];
 function FoodService($http, $q) {
   this.query = query;

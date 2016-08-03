@@ -1,14 +1,10 @@
-<h2>Food</h2>
-
-  <form ng-submit="foodsIndexCtrl.search()">
-    <input ng-model="foodsIndexCtrl.searchTerm" type="text" id="search" placeholder="Starbucks">
-    <button type="submit" ng-click="results = true">Search</button>
-
-    <button ng-click="results = false; foodsIndexCtrl.searchTerm = ''">Clear</button>
-  </form>
+<form ng-submit="foodsIndexCtrl.search()">
+  <input ng-model="foodsIndexCtrl.searchTerm" type="text" id="search" placeholder="Starbucks">
+  <button type="submit" ng-click="results = true">Search</button>
+  <button ng-click="results = false; foodsIndexCtrl.searchTerm = ''">Clear</button>
+</form>
 <div ng-show="results">
   <h2>Search Results for:{{foodsIndexCtrl.searchTerm}} </h2>
-
   <div ng-repeat="food in foodsIndexCtrl.foodList">
     <strong>Item: </strong>{{food.fields.item_name}} ({{food.fields.brand_name}})
     <button ng-click="info = true" ng-hide="info">Show Info</button>
@@ -25,7 +21,6 @@
         <li><strong>Sodium: </strong> {{food.fields.nf_sodium}} mg </li>
         <li><strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} mg </li>
       </ul>
-      <button>Add</button>
     </div>
   </div>
 </div>
