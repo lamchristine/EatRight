@@ -4,6 +4,7 @@
     <input ng-model="foodsIndexCtrl.searchTerm" type="text" id="search" placeholder="Starbucks">
     <button type="submit" ng-click="results = !results">Search</button>
   </form>
+    <button ng-click="results = false; foodsIndexCtrl.searchTerm = ''">Clear</button>
 
 <div ng-show="results">
   <h2>Search Results for:{{foodsIndexCtrl.searchTerm}} </h2>
