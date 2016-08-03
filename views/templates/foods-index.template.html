@@ -14,13 +14,18 @@
     <button ng-click="info = true" ng-hide="info">Show Info</button>
     <button ng-click="info = false" ng-show="info">Close Info</button>
     <div ng-show="info">
-      <strong>Calories: </strong> {{food.fields.nf_calories}} <span ng-if="!food.fields.nf_calories">0 </span> kcal
-      <strong>Total Fat: </strong> {{food.fields.nf_total_fat}} g
-      <strong>Polyunsaturated Fat: </strong>{{food.fields.nf_polyunsaturated_fat}} <span ng-if="!food.fields.nf_polyunsaturated_fat">0 </span> g
-      <strong>Monounsaturated Fat: </strong> {{food.fields.nf_monounsaturated_fat}} <span ng-if="!food.fields.nf_monounsaturated_fat">0 </span> g
-      <strong>Saturated Fat: </strong> {{food.fields.nf_saturated_fat}} g
-      <strong>Sodium: </strong> {{food.fields.nf_sodium}} mg
-      <strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} mg
+      <ul>
+        <li><strong>Calories: </strong> {{food.fields.nf_calories}} <span ng-if="!food.fields.nf_calories">0 </span> kcal </li>
+        <li><strong>Total Fat: </strong> {{food.fields.nf_total_fat}} g </li>
+        <ul>
+          <li><strong>Polyunsaturated Fat: </strong>{{food.fields.nf_polyunsaturated_fat}} <span ng-if="!food.fields.nf_polyunsaturated_fat">0 </span> g </li>
+          <li><strong>Monounsaturated Fat: </strong> {{food.fields.nf_monounsaturated_fat}} <span ng-if="!food.fields.nf_monounsaturated_fat">0 </span> g </li>
+          <li><strong>Saturated Fat: </strong> {{food.fields.nf_saturated_fat}} g </li>
+        </ul>
+        <li><strong>Sodium: </strong> {{food.fields.nf_sodium}} mg </li>
+        <li><strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} mg </li>
+      </ul>
+      <button>Add</button>
     </div>
   </div>
 </div>
