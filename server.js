@@ -19,6 +19,8 @@ app.use(express.static(__dirname + '/public')); //uses middleware 'static'?
 // log api requests
 app.use(logger('dev'));
 
+
+
 /*
  * Auth Routes
  */
@@ -28,6 +30,13 @@ app.post('/auth/signup', usersCtrl.signup);
 app.post('/auth/login', usersCtrl.login);
 app.get('/api/me', auth.ensureAuthenticated, usersCtrl.showCurrentUser); //auth.ensureAuthenticated checks to see if you are who you are, if so, then go to usersCtrl.showCurrentUser
 app.put('/api/me', auth.ensureAuthenticated, usersCtrl.updateCurrentUser);
+
+/*
+ * API Routes
+ */
+
+var foodsCtrl = controllers.foods;
+app.get('/api/foods', foodsCtrl.index);
 
 
 /*

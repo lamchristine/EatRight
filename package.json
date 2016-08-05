@@ -29,6 +29,7 @@
     "jwt-simple": "^0.5.0",
     "moment": "^2.14.1",
     "mongoose": "^4.5.8",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "request": "^2.74.0"
   }
 }
