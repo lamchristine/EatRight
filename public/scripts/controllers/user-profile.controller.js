@@ -1,5 +1,5 @@
-ProfileController.$inject = ["$location", "UserService"]; // minification protection
-function ProfileController ($location, UserService) {
+ProfileController.$inject = ["$location", "UserService", "$http"]; // minification protection
+function ProfileController ($location, UserService, $http) {
   var vm = this;
   vm.new_profile = {}; // form data
 
@@ -9,5 +9,26 @@ function ProfileController ($location, UserService) {
       .then(function onSuccess() {
         vm.showEditForm = false;
       });
+  };
+
+  get()
+
+  function get() {
+    $http
+      .get('/api/users/' + UserService.user.user_id)
+      .then(onGetSuccess, onGetError);
+
+    function onGetSuccess(response) {
+      console.log("response data", response)
+      vm.user = response.data;
+      var foodArr = response.data.foods
+
+      
+    }
+
+    function onGetError(response) {
+      console.log("Error in getting foods", response);
+      $location.path('/profile');
+    }
   };
 }

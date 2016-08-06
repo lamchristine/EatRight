@@ -32,6 +32,7 @@ app.post('/auth/signup', usersCtrl.signup);
 app.post('/auth/login', usersCtrl.login);
 app.get('/api/me', auth.ensureAuthenticated, usersCtrl.showCurrentUser); //auth.ensureAuthenticated checks to see if you are who you are, if so, then go to usersCtrl.showCurrentUser
 app.put('/api/me', auth.ensureAuthenticated, usersCtrl.updateCurrentUser);
+app.get('/api/users/:id', auth.ensureAuthenticated, usersCtrl.showUserProfile); //auth.ensureAuthenticated checks to see if you are who you are, if so, then go to usersCtrl.showCurrentUser
 
 /*
  * API Routes
@@ -59,7 +60,7 @@ app.post('/', function (req, res) {
 /*
  * Catch All Route
  */
-app.get(['/', '/signup', '/login', '/logout','/profile', '/foods*'], function (req, res) {
+app.get(['/', '/signup', '/login', '/logout','/profile', '/foods*', '/users*'], function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 

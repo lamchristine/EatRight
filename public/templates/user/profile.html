@@ -17,3 +17,9 @@
   </div>
   <input type="submit" value="Save Profile" class="btn btn-block btn-info">
 </form>
+
+
+<h1>What I ate Today:</h1>
+<div ng-repeat="food in profileCtrl.user.foods">
+  <strong>Item:</strong>{{food.item_name}} by {{food.brand_name}}
+</div>
