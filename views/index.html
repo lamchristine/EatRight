@@ -28,11 +28,12 @@
   </head>
 
   <body ng-controller="MainController as main">
-    <ul class="nav navbar-nav navbar-right">
+    <h2><a href="/">EatRight</a></h2>
+    <ul>
       <li ng-show="!main.currentUser.isLoggedIn()"><a href="/signup">Sign Up</a></li>
       <li ng-show="!main.currentUser.isLoggedIn()"><a href="/login">Log In</a></li>
       <li ng-show="main.currentUser.isLoggedIn()"><a href="/logout">Log Out</a></li>
-      <li ng-show="main.currentUser.isLoggedIn()">Logged in as {{main.currentUser.displayName}}</li>
+      <li ng-show="main.currentUser.isLoggedIn()">Logged in as <a href="/profile">{{main.currentUser.displayName}}</a></li>
     </ul>
 
     <h1>Food Search</h1>

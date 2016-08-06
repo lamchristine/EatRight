@@ -21,13 +21,7 @@
         <li><strong>Sodium: </strong> {{food.fields.nf_sodium}} mg </li>
         <li><strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} mg </li>
       </ul>
-      <form ng-submit="foodsIndexCtrl.addFood()">
-        <input name="item_name" value='{{food.fields.item_name}}' type="hidden">
-        <input name="brand_name" value='{{food.fields.brand_name}}' type="hidden">
-        <input name="calories" value='{{food.fields.nf_calories}}' type="hidden">
-        <input name="fat" value='{{food.fields.nf_total_fat}}' type="hidden">
-        <input type="submit" value="Add">
-      </form>
+      <button ng-click="foodsIndexCtrl.add(food)">Add</button>
     </div>
   </div>
 </div>

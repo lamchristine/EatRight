@@ -3,18 +3,24 @@ var db = require('../models'),
     User = db.User,
     Food = db.Food;
 
-function index(req, res) {
-  Food
-    .find({})
-    .populate('user')
-    .exec(function(err, foods){
-      if (err || !foods || !foods.length) {
-        return res.status(404).send({message: 'Foods not found.'})
-      }
-      res.send(foods);
-    })
+function create(req, res) {
+  console.log('req', req.body);
+  console.log('user', req.user_id);
+  var add_food = new Food(req.body);
+  add_food.user = req.user_id;
+  add_food.save(function(err, add_food){
+    res.send(add_food);
+  });
+
+  User
+    .findById(req.user_id)
+    .populate('foods')
+    .exec(function (err, foundUser) {
+      foundUser.foods.push(add_food);
+      foundUser.save();
+    });
 }
 
 module.exports = {
-  index: index
+  create: create
 };

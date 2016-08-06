@@ -38,7 +38,7 @@ app.put('/api/me', auth.ensureAuthenticated, usersCtrl.updateCurrentUser);
  */
 
 var foodsCtrl = controllers.foods;
-app.get('/api/foods', foodsCtrl.index);
+app.post('/api/foods', auth.ensureAuthenticated, foodsCtrl.create);
 
 /*
  * NutritionixAPI Routes
@@ -59,7 +59,7 @@ app.post('/', function (req, res) {
 /*
  * Catch All Route
  */
-app.get(['/', '/signup', '/login', '/logout','/profile'], function (req, res) {
+app.get(['/', '/signup', '/login', '/logout','/profile', '/foods*'], function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
