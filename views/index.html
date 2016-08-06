@@ -19,6 +19,7 @@
     <script type="text/javascript" src="scripts/controllers/auth-login.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/auth-logout.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/user-signup.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/user-profile.controller.js"></script>
     <script type="text/javascript" src="scripts/services/user.service.js"></script>
     <script type="text/javascript" src="scripts/routes.js"></script>
     <script src="scripts/app.js"></script>
@@ -31,9 +32,10 @@
       <li ng-show="!main.currentUser.isLoggedIn()"><a href="/signup">Sign Up</a></li>
       <li ng-show="!main.currentUser.isLoggedIn()"><a href="/login">Log In</a></li>
       <li ng-show="main.currentUser.isLoggedIn()"><a href="/logout">Log Out</a></li>
+      <li ng-show="main.currentUser.isLoggedIn()">Logged in as {{main.currentUser.displayName}}</li>
     </ul>
 
-    <h1>Foods Search</h1>
+    <h1>Food Search</h1>
 
     <div ng-view></div>
   </body>

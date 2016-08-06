@@ -4,7 +4,7 @@
   <button ng-click="results = false; foodsIndexCtrl.searchTerm = ''">Clear</button>
 </form>
 <div ng-show="results">
-  <h2>Search Results for:{{foodsIndexCtrl.searchTerm.item}} </h2>
+  <h2>Search Results for: {{foodsIndexCtrl.searchTerm.item}} </h2>
   <div ng-repeat="food in foodsIndexCtrl.foodList">
     <strong>Item: </strong>{{food.fields.item_name}} ({{food.fields.brand_name}})
     <button ng-click="info = true" ng-hide="info">Show Info</button>
@@ -21,6 +21,13 @@
         <li><strong>Sodium: </strong> {{food.fields.nf_sodium}} mg </li>
         <li><strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} mg </li>
       </ul>
+      <form ng-submit="foodsIndexCtrl.addFood()">
+        <input name="item_name" value='{{food.fields.item_name}}' type="hidden">
+        <input name="brand_name" value='{{food.fields.brand_name}}' type="hidden">
+        <input name="calories" value='{{food.fields.nf_calories}}' type="hidden">
+        <input name="fat" value='{{food.fields.nf_total_fat}}' type="hidden">
+        <input type="submit" value="Add">
+      </form>
     </div>
   </div>
 </div>

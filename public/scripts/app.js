@@ -8,6 +8,7 @@ angular
   .controller('LoginController', LoginController)
   .controller('SignupController', SignupController)
   .controller('LogoutController', LogoutController)
+  .controller('ProfileController', ProfileController)
   .service('UserService', UserService)
   .service('FoodService', FoodService)
   .config(configRoutes);

@@ -2,9 +2,10 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var foodSchema = new Schema({
-  user: { type: Schema.Types.ObjectId, ref: 'User' },
-  title: String,
-  content: String
+  item_name: String,
+  brand_name: String,
+  calories: Number,
+  fat: Number
 });
 
 var Food = mongoose.model('Food', foodSchema);
