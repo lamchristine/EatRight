@@ -19,11 +19,14 @@ function ProfileController ($location, UserService, $http) {
       .then(onGetSuccess, onGetError);
 
     function onGetSuccess(response) {
-      console.log("response data", response)
+      console.log("response data", response);
       vm.user = response.data;
-      var foodArr = response.data.foods
-
-      
+      var foodArr = response.data.foods;
+      var total = 0;
+      for (var i=0; i<foodArr.length; i++) {
+        total+=foodArr[i].calories;
+      }
+      vm.totalCalories=total;
     }
 
     function onGetError(response) {
