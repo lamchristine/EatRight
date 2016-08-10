@@ -5,9 +5,8 @@ function UserService($http, $q, $auth){
   var empty_user = {
     user_id: null,
     displayName: null,
-    email: null,
-    // created: null
-  }
+    email: null
+  };
 
   self.user = angular.extend({}, empty_user, {
     isLoggedIn: isLoggedIn
@@ -18,7 +17,6 @@ function UserService($http, $q, $auth){
   self.updateProfile = updateProfile;
   self.login = login;
   self.logout = logout;
-  // self.date = new Date();
 
   //// UserService Methods
 

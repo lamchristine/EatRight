@@ -2,8 +2,7 @@
 <hr>
 <p><strong>Username:</strong> {{main.currentUser.displayName}}</p>
 <p><strong>Email:</strong> {{main.currentUser.email}}</p>
-<p><strong>Joined:</strong> {{main.currentUser.created | date:format:timezone}}</p>
-<p><strong>Posts:</strong> {{main.currentUser.posts.length || 0}}</p>
+<p><strong>Joined:</strong> {{profileCtrl.user.created | date:format:timezone}}</p>
 
 <hr>
 <a href="#" ng-click="profileCtrl.showEditForm=true" ng-hide="profileCtrl.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
@@ -21,6 +20,11 @@
 
 <h1>What I ate Today:</h1>
 <div ng-repeat="food in profileCtrl.user.foods">
-  <strong>Item:</strong>{{food.item_name}} by {{food.brand_name}}
+  <strong>Item:</strong>{{food.item_name}} by {{food.brand_name}}, created: {{food.created}}
 </div>
 <h2>Total Calories: {{profileCtrl.totalCalories}} kcal </h2>
+
+<div ng-repeat="date in profileCtrl.dateArr">
+  {{date | date:format:timezone}}
+  
+</div>
