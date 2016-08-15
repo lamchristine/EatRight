@@ -6,5 +6,6 @@ mongoose.connect( 'mongodb://localhost/EatRight' ||
 
 module.exports = {
   User: require('./user'),
-  Food: require('./food')
-}
+  Food: require('./food'),
+  Meal: require('./meal')
+};

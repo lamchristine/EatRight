@@ -33,6 +33,7 @@ app.post('/auth/login', usersCtrl.login);
 app.get('/api/me', auth.ensureAuthenticated, usersCtrl.showCurrentUser); //auth.ensureAuthenticated checks to see if you are who you are, if so, then go to usersCtrl.showCurrentUser
 app.put('/api/me', auth.ensureAuthenticated, usersCtrl.updateCurrentUser);
 app.get('/api/users/:id', auth.ensureAuthenticated, usersCtrl.showUserProfile); //auth.ensureAuthenticated checks to see if you are who you are, if so, then go to usersCtrl.showCurrentUser
+app.post('/api/users/:id/meals', auth.ensureAuthenticated, usersCtrl.addMeal); //auth.ensureAuthenticated checks to see if you are who you are, if so, then go to usersCtrl.showCurrentUser
 
 /*
  * API Routes

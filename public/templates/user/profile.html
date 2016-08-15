@@ -3,6 +3,7 @@
 <p><strong>Username:</strong> {{main.currentUser.displayName}}</p>
 <p><strong>Email:</strong> {{main.currentUser.email}}</p>
 <p><strong>Joined:</strong> {{profileCtrl.user.created | date:format:timezone}}</p>
+<p><strong>Updated:</strong> {{profileCtrl.user.updated | date:format:timezone}}</p>
 
 <hr>
 <a href="#" ng-click="profileCtrl.showEditForm=true" ng-hide="profileCtrl.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
@@ -19,12 +20,14 @@
 
 
 <h1>What I ate Today:</h1>
-<div ng-repeat="food in profileCtrl.user.foods">
+<!-- <div ng-repeat="food in profileCtrl.user.foods">
   <strong>Item:</strong>{{food.item_name}} by {{food.brand_name}}, created: {{food.created}}
-</div>
-<h2>Total Calories: {{profileCtrl.totalCalories}} kcal </h2>
-
-<div ng-repeat="date in profileCtrl.dateArr">
-  {{date | date:format:timezone}}
-  
+</div> -->
+<!-- <h2>Total Calories: {{profileCtrl.totalCalories}} kcal </h2> -->
+<div ng-repeat="meal in profileCtrl.user.meals">
+  <h2>Date: {{meal.date | date:format:timezone}} </h2>
+    <div ng-repeat="food in meal.foods">
+      {{food.item_name}} from {{food.brand_name}} with calories: {{food.calories}} kcal and fat: {{food.fat}}
+    </div>
+  <h3>Total Calories:{{meal.total}}</h3>
 </div>

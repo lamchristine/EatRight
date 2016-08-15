@@ -1,6 +1,7 @@
 var auth = require('../middleware/auth');
 var db = require('../models'),
     User = db.User;
+    Meal = db.Meal;
 
 function login(req, res) {
   User.findOne({ email: req.body.email }, '+password', function (err, user) {
@@ -61,13 +62,78 @@ function showUserProfile (req, res) {
   User.findById(req.user_id, function(err, foundUser) {
     res.send(foundUser);
   })
-  .populate('foods');
+  .populate({
+      path: 'meals',
+      populate: {path: 'foods'}
+    });
 }
+
+function addMeal (req, res) {
+
+  Meal
+    .find({user:req.user_id}) //finding all meals by user id
+    .populate('users')
+    .populate('foods')
+    .exec (function (err, foundUserMeal) {
+
+      //if user meal exists...
+      if (foundUserMeal.length>0) {
+        for (var i = 0; i <foundUserMeal.length;i++) {
+          //check to see if there's a meal for current date
+          if ( foundUserMeal[i].date.valueOf() === new Date().setHours(0,0,0,0) ) {
+            return console.log("date already exists");
+          }
+          //if not, then add new Meal for current date
+          var add_meal = new Meal({
+            date: new Date(),
+            user: req.user_id,
+            total: 0,
+            foods:[]
+          });
+
+          add_meal.save(function (err, add_meal) {
+          });
+
+          User
+            .findById(req.user_id)
+            .populate('meals')
+            .exec(function (err, foundUser) {
+              console.log("addmean", add_meal);
+              foundUser.meals.push(add_meal);
+              foundUser.save();
+            });
+          }
+        return console.log("11111date already exists");
+      }
+
+      //...if not, then create new meal for user for current date
+      var add_usermeal = new Meal({
+        date: new Date().setHours(0,0,0,0),
+        user: req.user_id,
+        total: 0,
+        foods:[]
+      });
+
+      add_usermeal.save(function (err, add_usermeal) {
+      });
+
+      //saving meal to User.meals array
+      User
+        .findById(req.user_id)
+        .populate('meals')
+        .exec(function (err, foundUser) {
+          console.log("addmean", foundUser);
+          foundUser.meals.push(add_usermeal);
+          foundUser.save();
+        });
+    });
+  }
 
 module.exports = {
   signup: signup,
   login: login,
   updateCurrentUser: updateCurrentUser,
   showCurrentUser: showCurrentUser,
-  showUserProfile: showUserProfile
+  showUserProfile: showUserProfile,
+  addMeal: addMeal
 };

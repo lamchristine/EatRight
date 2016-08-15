@@ -11,7 +11,7 @@ function ProfileController ($location, UserService, $http) {
       });
   };
 
-  get()
+  get();
 
   function get() {
     $http
@@ -19,41 +19,29 @@ function ProfileController ($location, UserService, $http) {
       .then(onGetSuccess, onGetError);
 
     function onGetSuccess(response) {
-      console.log("response data user", response);
+      console.log("response data user1111", response.data.meals);
       vm.user = response.data;
-      var foodArr = response.data.foods;
-      var total = 0;
-      for (var i=0; i<foodArr.length; i++) {
-        total+=foodArr[i].calories;
-      }
-      vm.totalCalories=total;
-
-      //list all dates between today's date and date joined
-      Date.prototype.addDays = function(days) {
-        var dat = new Date (this.valueOf());
-        dat.setDate(dat.getDate() + days);
-        return dat;
-      };
-
-      var startDate = new Date(response.data.created);
-      var stopDate = new Date();
-
-      function getDates(startDate, stopDate) {
-        var dateArr = [];
-        var currentDate = startDate;
-        while (currentDate <= stopDate) {
-          dateArr.push( currentDate );
-          currentDate = currentDate.addDays(1);
-        }
-        return dateArr;
-      }
-      var dateArr = getDates(startDate, stopDate);
-      vm.dateArr = dateArr;
     }
 
     function onGetError(response) {
       console.log("Error in getting foods", response);
       $location.path('/profile');
     }
-  };
+  }
+
+  addMeal();
+  var current = new Date().setHours(0,0,0,0);
+  function addMeal (current) {
+    $http
+      .post('/api/users/' + UserService.user.user_id + '/meals')
+      .then(onGetSuccess, onGetError);
+
+    function onGetSuccess(response) {
+      console.log("response data user", response);
+    }
+    function onGetError(response) {
+      console.log("Error in getting foods", response);
+      $location.path('/profile');
+    }
+  }
 }
