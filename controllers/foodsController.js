@@ -18,6 +18,7 @@ function create(req, res) {
     .populate('foods')
     .exec (function (err, foundUserMeal) {
       //looping through all meals
+      console.log("[[[[[[[[[[[", foundUserMeal);
       for (var i = 0; i <foundUserMeal.length;i++) {
         //finding the today's meal
         if ( foundUserMeal[i].date.valueOf() === new Date().setHours(0,0,0,0) ) {

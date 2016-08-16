@@ -30,6 +30,7 @@ function ProfileController ($location, UserService, $http) {
   }
 
   addMeal();
+  console.log("addMeal()")
   var current = new Date().setHours(0,0,0,0);
   function addMeal (current) {
     $http
