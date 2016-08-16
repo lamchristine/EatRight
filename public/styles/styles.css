@@ -11,12 +11,16 @@ a {
 
 /*nav bar*/
 #nav {
-  background-color: yellow;
+  background-color: #5F6263;
   left: 0;
   right: 0;
   height: 66px;
   line-height: 66px;
   position: fixed;
+}
+
+#nav a {
+  color: white;
 }
 
 .logo {
@@ -58,9 +62,53 @@ a {
   height: 650px;
 }
 
-.landing h2 {
+.action {
   position: absolute;
-  top: 40%;
-  right: 20%;
+  top: 30%;
+  right: 10%;
   color: white;
+  /*background-color: blue;*/
+  text-align: center;
+}
+
+.button {
+  background-color: #90C3D4;
+  width: 100px;
+  display: inline-block;
+  font-size:20px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
+}
+
+/*login page*/
+.form {
+  background-color: #50D4A6;
+  width: 40%;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.form input {
+  margin-bottom: 20px;
+  width: 70%;
+  font-size: 15px;
+  padding: 5px;
+  border-width: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.submit {
+    margin-bottom: 0;
+}
+
+.login p {
+  margin-top: 0;
+  font-size: 13px;
 }

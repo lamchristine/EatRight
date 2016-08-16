@@ -46,7 +46,7 @@ app.post('/api/foods', auth.ensureAuthenticated, foodsCtrl.create);
  * NutritionixAPI Routes
  */
 
-app.post('/', function (req, res) {
+app.post('/', auth.ensureAuthenticated, function (req, res) {
   console.log("post data", req.body);
   request('https://api.nutritionix.com/v1_1/search/' + req.body.item + '?results=0:20&fields=item_name,brand_name,item_id,images_front_full_url,nf_calories,nf_monounsaturated_fat,nf_polyunsaturated_fat,nf_sodium,nf_cholesterol,nf_saturated_fat,nf_total_fat&appId=285dc9c7&appKey=ecd9dbdbeb3528353f71335e422e8653',
   function (error, response, body) {

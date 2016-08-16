@@ -1,6 +1,11 @@
 <div class="landing">
   <div class="container">
-  <h2>Start Today!</h2>
-</div>
-
+    <div class="action">
+      <h2>Take control of your health.<h2>
+      <h2> Take control of your eating.<h2>
+      <h2>Eat Right Today!</h2>
+      <a class="button" ng-if="main.currentUser.isLoggedIn()" href="/search">Start</a>
+      <a class="button" ng-if="!main.currentUser.isLoggedIn()" href="/login">Start</a>
+    </div>
+  </div>
 </div>
