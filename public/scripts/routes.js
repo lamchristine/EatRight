@@ -3,6 +3,11 @@ function configRoutes ($routeProvider, $locationProvider) {
 
   $routeProvider
     .when('/', {
+      templateUrl: 'templates/index.html',
+      controllerAs: 'homeIndexCtrl',
+      controller: 'HomeIndexController'
+    })
+    .when('/search', {
       templateUrl: 'templates/foods/foods-index.template.html',
       controllerAs: 'foodsIndexCtrl',
       controller: 'FoodsIndexController'

@@ -9,14 +9,7 @@ a {
   text-decoration: none;
 }
 
-.site-content {
-  padding-top: 66px;
-}
-
-.container {
-  margin: 0 20px;
-}
-
+/*nav bar*/
 #nav {
   background-color: yellow;
   left: 0;
@@ -38,4 +31,36 @@ a {
 
 .menu a {
     padding: 0 10px;
+}
+
+.site-content {
+  padding-top: 66px;
+}
+
+.container {
+  margin: 0 20px;
+}
+
+/*landing page*/
+.landing {
+  position: relative;
+  background-image: url(/images/landing.jpeg);
+  background-size: cover;
+  color: #EEE;
+  background-position: center;;
+  width: 90%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing .container {
+  height: 650px;
+}
+
+h2 {
+  position: absolute;
+  top: 40%;
+  right: 20%;
+  color: white;
 }
