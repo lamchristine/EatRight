@@ -61,7 +61,7 @@ app.post('/', function (req, res) {
 /*
  * Catch All Route
  */
-app.get(['/', '/signup', '/login', '/logout','/profile', '/foods*', '/users*'], function (req, res) {
+app.get(['/', '/signup', '/login', '/logout','/profile', '/foods*', '/users*', '/search*'], function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
