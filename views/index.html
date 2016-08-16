@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <!-- STYLESSHEETS -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
 
     <!-- VENDOR SCRIPTS -->
@@ -28,17 +30,21 @@
   </head>
 
   <body ng-controller="MainController as main">
-    <h2><a href="/">EatRight</a></h2>
-    <ul>
-      <li ng-show="!main.currentUser.isLoggedIn()"><a href="/signup">Sign Up</a></li>
-      <li ng-show="!main.currentUser.isLoggedIn()"><a href="/login">Log In</a></li>
-      <li ng-show="main.currentUser.isLoggedIn()"><a href="/logout">Log Out</a></li>
-      <li ng-show="main.currentUser.isLoggedIn()">Logged in as <a href="/profile">{{main.currentUser.displayName}}</a></li>
-    </ul>
+    <div id="nav">
+      <a class="logo" href="/">EatRight</a>
+      <nav class="menu">
+        <a ng-show="!main.currentUser.isLoggedIn()" href="/signup">Sign Up</a>
+        <a ng-show="!main.currentUser.isLoggedIn()" href="/login">Log In</a>
+        <a ng-show="main.currentUser.isLoggedIn()"href="/logout">Log Out</a>
+        <a ng-show="main.currentUser.isLoggedIn()" href="/profile">Logged in as {{main.currentUser.displayName}}</a>
+      </nav>
+    </div>
 
-    <h1>Food Search</h1>
-
-    <div ng-view></div>
+    <div class="site-content">
+      <div class="container">
+        <div ng-view></div>
+      </div>
+    </div>
   </body>
 
 </html>

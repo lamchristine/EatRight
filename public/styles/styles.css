@@ -1,0 +1,41 @@
+body {
+  background-color: #f6f6f6;
+  font-family: 'Noto Serif';
+  margin: 0;
+  padding:0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.site-content {
+  padding-top: 66px;
+}
+
+.container {
+  margin: 0 20px;
+}
+
+#nav {
+  background-color: yellow;
+  left: 0;
+  right: 0;
+  height: 66px;
+  line-height: 66px;
+  position: fixed;
+}
+
+.logo {
+  float: left;
+  padding: 0 20px;
+}
+
+.menu {
+  float: right;
+  padding: 0 20px;
+}
+
+.menu a {
+    padding: 0 10px;
+}
