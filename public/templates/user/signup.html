@@ -1,19 +1,25 @@
 <div class="form">
-	<h3 class="text-center">Welcome!</h3>
+	<div class="signup">
+		<ul class="tab">
+			<li class="signup-tab"><a href="/#">Sign Up</a></li>
+			<li class="login-tab"><a href="/login">Log In</a></li>
+		</ul>
+		<h3 class="text-center">Sign up for free!</h3>
 
-	<form ng-submit="sc.signup()">
-		<div class="input">
-		  <input type="text" ng-model="sc.new_user.displayName" placeholder="Full Name">
-		</div>
-	  <div class="input">
-	    <input type="text" ng-model="sc.new_user.email" placeholder="Email">
-	  </div>
-	  <div class="input">
-	    <input type="password" ng-model="sc.new_user.password" placeholder="Password">
-	  </div>
-		<div class="submit">
-		  <input type="submit" value="Sign Up">
-		</div>
-	</form>
-	<p class="text-muted">Already have an account? <a href="/login">Log in here.</a></p>
+		<form ng-submit="sc.signup()">
+			<div class="input">
+			  <input type="text" ng-model="sc.new_user.displayName" placeholder="Full Name">
+			</div>
+		  <div class="input">
+		    <input type="text" ng-model="sc.new_user.email" placeholder="Email">
+		  </div>
+		  <div class="input">
+		    <input type="password" ng-model="sc.new_user.password" placeholder="Password">
+		  </div>
+			<div class="submit">
+			  <input type="submit" value="Sign Up">
+			</div>
+		</form>
+		<p class="text-muted">Already have an account? <a href="/login">Log in here.</a></p>
+	</div>
 </div>

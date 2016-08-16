@@ -1,16 +1,21 @@
 <div class="form">
-  <h3 class="text-center">Welcome back!</h3>
-
-  <form ng-submit="lc.login()">
-    <div class="input">
-      <input type="text" ng-model="lc.new_user.email" placeholder="Email">
-    </div>
-    <div class="input">
-      <input type="password" ng-model="lc.new_user.password" placeholder="Password">
-    </div>
-    <div class="submit">
-      <input type="submit" value="Log In">
-    </div>
-  </form>
-  <p class="text-muted">Don't have an account? <a href="/signup">Sign up here.</a></p>
+  <div class="login">
+    <ul class="tab">
+      <li class="signup-tab"><a href="/signup">Sign Up</a></li>
+      <li class="login-tab"><a href="#">Log In</a></li>
+    </ul>
+    <h3 class="text-center">Welcome back!</h3>
+    <form ng-submit="lc.login()">
+      <div class="input">
+        <input type="text" ng-model="lc.new_user.email" placeholder="Email">
+      </div>
+      <div class="input">
+        <input type="password" ng-model="lc.new_user.password" placeholder="Password">
+      </div>
+      <div class="submit">
+        <input type="submit" value="Log In">
+      </div>
+    </form>
+    <p class="text-muted">Don't have an account? <a href="/signup">Sign up here.</a></p>
+  </div>
 </div>

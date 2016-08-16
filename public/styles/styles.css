@@ -84,21 +84,61 @@ a {
 
 /*login page*/
 .form {
-  background-color: #50D4A6;
-  width: 40%;
-  margin-top: 10%;
-  margin-left: auto;
-  margin-right: auto;
+  background-color: #474A48;
+  padding:50px;
+  width: 50%;
+  margin: 40px auto;
   text-align: center;
+  color: white;
+}
+
+.form a {
+  color: white;
+}
+
+.tab {
+  list-style: none;
+  padding: 0;
+  margin:0 0 30px 0;
+}
+
+.tab:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.tab li {
+  display: block;
   padding-top: 10px;
   padding-bottom: 10px;
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
+.login .signup-tab{
+  background-color: #6D736F;
+}
+
+.login .login-tab {
+  background-color: #50D4A6;
+}
+
+.signup .login-tab{
+  background-color: #6D736F;
+}
+
+.signup .signup-tab {
+  background-color: #50D4A6;
 }
 
 .form input {
   margin-bottom: 20px;
-  width: 70%;
+  width: 100%;
   font-size: 15px;
-  padding: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-width: 0;
   text-align: center;
   cursor: pointer;
@@ -108,7 +148,8 @@ a {
     margin-bottom: 0;
 }
 
-.login p {
-  margin-top: 0;
+.form p {
+  margin-top: 5px;
   font-size: 13px;
+  margin-bottom: 0;
 }
