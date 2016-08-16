@@ -1,33 +1,42 @@
-<h3>{{main.currentUser.displayName}}</h3>
-<hr>
-<p><strong>Username:</strong> {{main.currentUser.displayName}}</p>
-<p><strong>Email:</strong> {{main.currentUser.email}}</p>
-<p><strong>Joined:</strong> {{profileCtrl.user.created | date:format:timezone}}</p>
-<p><strong>Updated:</strong> {{profileCtrl.user.updated | date:format:timezone}}</p>
+<div class="profile">
+  <div class="info">
+    <div class="container">
+      <h3>Account Information</h3>
+      <p><strong>Username:</strong> {{main.currentUser.displayName}}</p>
+      <p><strong>Email:</strong> {{main.currentUser.email}}</p>
+      <p><strong>Joined:</strong> {{profileCtrl.user.created | date:format:timezone}}</p>
+      <p><strong>Updated:</strong> {{profileCtrl.user.updated | date:format:timezone}}</p>
 
-<hr>
-<a href="#" ng-click="profileCtrl.showEditForm=true" ng-hide="profileCtrl.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
-
-<form ng-submit="profileCtrl.updateProfile()" ng-show="profileCtrl.showEditForm">
-  <div class="form-group">
-    <input type="text" ng-model="profileCtrl.new_profile.displayName" class="form-control" placeholder="Username">
-  </div>
-  <div class="form-group">
-    <input type="text" ng-model="profileCtrl.new_profile.email" class="form-control" placeholder="Email">
-  </div>
-  <input type="submit" value="Save Profile" class="btn btn-block btn-info">
-</form>
-
-
-<h1>What I ate Today:</h1>
-<!-- <div ng-repeat="food in profileCtrl.user.foods">
-  <strong>Item:</strong>{{food.item_name}} by {{food.brand_name}}, created: {{food.created}}
-</div> -->
-<!-- <h2>Total Calories: {{profileCtrl.totalCalories}} kcal </h2> -->
-<div ng-repeat="meal in profileCtrl.user.meals">
-  <h3>Date: {{meal.date | date:format:timezone}} </h3>
-    <div ng-repeat="food in meal.foods">
-      {{food.item_name}} from {{food.brand_name}} with calories: {{food.calories}} kcal and fat: {{food.fat}}
+      <div class="editProfile">
+        <a href="#" ng-click="profileCtrl.showEditForm=true" ng-hide="profileCtrl.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
+        <form ng-submit="profileCtrl.updateProfile()" ng-show="profileCtrl.showEditForm">
+          <div class="form-group">
+            <input type="text" ng-model="profileCtrl.new_profile.displayName" class="form-control" placeholder="Username">
+          </div>
+          <div class="form-group">
+            <input type="text" ng-model="profileCtrl.new_profile.email" class="form-control" placeholder="Email">
+          </div>
+          <input type="submit" value="Save Profile" class="btn btn-block btn-info">
+        </form>
+      </div>
     </div>
-  <h3>Total Calories:{{meal.total}}</h3>
+  </div>
+
+  <div class="foods">
+    <div class="container">
+      <h1>Food Diary</h1>
+      <div ng-repeat="meal in profileCtrl.user.meals">
+        <!--click to display foods for meal-->
+        <h3><a href="#" ng-click="showFoods=true">{{meal.date | date:format:timezone}} | Total Daily Calories: {{meal.total}} kcal</a></h3>
+        <div ng-show="showFoods">
+          <div ng-repeat="food in meal.foods">
+            <li>{{food.item_name}} from {{food.brand_name}}
+              <p>Calories: {{food.calories}} kcal | Fat: {{food.fat}}</p>
+            </li>
+          </div>
+          <button ng-click="showFoods=false" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

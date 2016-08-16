@@ -59,7 +59,7 @@ a {
 }
 
 .landing .container {
-  height: 650px;
+  height: 600px;
 }
 
 .action {
@@ -67,7 +67,6 @@ a {
   top: 30%;
   right: 10%;
   color: white;
-  /*background-color: blue;*/
   text-align: center;
 }
 
@@ -82,11 +81,11 @@ a {
   color: white;
 }
 
-/*login page*/
+/*form*/
 .form {
   background-color: #474A48;
   padding:50px;
-  width: 50%;
+  width: 30%;
   margin: 40px auto;
   text-align: center;
   color: white;
@@ -117,22 +116,6 @@ a {
   text-align: center;
 }
 
-.login .signup-tab{
-  background-color: #6D736F;
-}
-
-.login .login-tab {
-  background-color: #50D4A6;
-}
-
-.signup .login-tab{
-  background-color: #6D736F;
-}
-
-.signup .signup-tab {
-  background-color: #50D4A6;
-}
-
 .form input {
   margin-bottom: 20px;
   width: 100%;
@@ -152,4 +135,43 @@ a {
   margin-top: 5px;
   font-size: 13px;
   margin-bottom: 0;
+}
+
+/*login tab*/
+.login .signup-tab{
+  background-color: #6D736F;
+}
+
+.login .login-tab {
+  background-color: #50D4A6;
+}
+
+/*signup tab*/
+.signup .login-tab{
+  background-color: #6D736F;
+}
+
+.signup .signup-tab {
+  background-color: #50D4A6;
+}
+
+/*profile*/
+.profile {
+  width: 90%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info {
+  /*background-color: blue;*/
+  float: left;
+  width: 30%;
+}
+
+.foods {
+  float: left;
+  /*background-color: red;*/
+  width: 70%;
+
 }
