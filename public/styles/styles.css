@@ -163,15 +163,75 @@ a {
   margin-right: auto;
 }
 
-.info {
-  /*background-color: blue;*/
+.user_info {
   float: left;
   width: 30%;
 }
 
 .foods {
   float: left;
+  width: 70%;
+}
+
+/*search page*/
+
+
+.results{
   /*background-color: red;*/
   width: 70%;
+  margin-top: 20px;
+  height: 450px;
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid grey;
+}
 
+.items {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  float: left;
+  width: 50%;
+  text-align: left;
+  list-style: none;
+}
+
+.items p {
+  margin: 0;
+  padding: 0;
+}
+
+.items li {
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+hr {
+  margin-top: 20px;
+}
+
+.empty {
+  width: 50%;
+  visibility: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.show_info {
+  display: block;
+  float: left;
+  width: 50%;
+  text-align: left;
+  /*background-color: yellow;*/
+
+}
+
+.info {
+  width: 100%;
+    padding-left: 50px;
+    /*background-color: blue;*/
+}
+
+.info li {
+  list-style: none;
 }
