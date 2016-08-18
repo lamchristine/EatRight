@@ -10,23 +10,6 @@ var userSchema = new Schema({
   displayName: String,
   picture: String,
   meals: [ {type: Schema.Types.ObjectId, ref: 'Meal'} ]
-  // dates: [ {type: Date, value: [ {type: Schema.Types.ObjectId, ref: 'Food'} ] }]
-
-            //   foods: [ {type: Schema.Types.ObjectId, ref: 'Food'} ]
-            // }
-  // meta: {
-  //   dates: [{ type: Date,
-  //     foods: [ {type: Schema.Types.ObjectId, ref: 'Food'} ]
-  //   }]
-  // }
-  // foods: [{
-  //   date: {
-  //     type: Date,
-  //     default: Date.now,
-  //     value: [ {type: Schema.Types.ObjectId, ref: 'Food'} ]
-  //   }
-  // }]
-  // foods: [ {type: Schema.Types.ObjectId, ref: 'Food'}]
 });
 
 userSchema.pre('save', function (next) {

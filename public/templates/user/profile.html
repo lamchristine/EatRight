@@ -25,11 +25,13 @@
   <div class="foods">
     <div class="container">
       <h1>Food Diary</h1>
+      <button><a href="/search">Add Food</a></button>
       <div ng-repeat="meal in profileCtrl.user.meals">
         <!--click to display foods for meal-->
         <h3><a href="#" ng-click="showFoods=true">{{meal.date | date:format:timezone}} | Total Daily Calories: {{meal.total}} kcal</a></h3>
         <div ng-show="showFoods">
           <div ng-repeat="food in meal.foods">
+            {{food}}
             <li>{{food.item_name}} from {{food.brand_name}}
               <p>Calories: {{food.calories}} kcal | Fat: {{food.fat}}</p>
             </li>
