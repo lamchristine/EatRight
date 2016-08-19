@@ -173,6 +173,46 @@ a {
   width: 70%;
 }
 
+
+/*.foods .container{
+  white-space:nowrap;
+  overflow-x:scroll;
+  overflow-y:hidden;
+  width: 300px;
+
+}*/
+
+
+#meal_wrapper{
+  white-space:nowrap;
+  overflow-x:scroll;
+  overflow-y:hidden;
+  width: 100%;
+  /*position: absolute;*/
+}
+
+.meal_dates_tab{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 500%;
+}
+
+.meal_dates_tab li {
+  display:block;
+  float: left;
+  margin-right: 70px;
+  /*background-color: blue;*/
+  text-align: center;
+}
+
+/*.meal_dates_tab li:after {
+  content: "";
+  display: table;
+  clear: both;
+}*/
+
+
 /*search page*/
 
 

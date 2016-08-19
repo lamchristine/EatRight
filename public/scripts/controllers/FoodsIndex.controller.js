@@ -8,6 +8,7 @@ function FoodsIndexController (FoodService) {
   vm.searchTerm = "";
   vm.add = add;
 
+
   //initialization
   console.log(vm.helloWorld);
 
