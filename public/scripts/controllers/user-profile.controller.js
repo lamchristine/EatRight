@@ -1,7 +1,15 @@
-ProfileController.$inject = ["$location", "UserService", "$http"]; // minification protection
-function ProfileController ($location, UserService, $http) {
+ProfileController.$inject = ["$location", "UserService", "$http", "$scope"]; // minification protection
+function ProfileController ($location, UserService, $http, $scope) {
   var vm = this;
   vm.new_profile = {}; // form data
+
+
+  $scope.selectedIndex = 3;
+
+  $scope.itemClicked = function($index) {
+    $scope.selectedIndex = $index;
+  };
+
 
   vm.updateProfile = function() {
     UserService

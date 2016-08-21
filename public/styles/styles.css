@@ -174,25 +174,36 @@ a {
   width: 70%;
 }
 
-#meal_wrapper{
-  white-space:nowrap;
-  overflow-x:scroll;
-  overflow-y:hidden;
-  width: 100%;
+
+.meal_container {
+  background-color: #DFD4C9;
+  margin-top: 80px;
+  padding: 10px;
 }
 
-.meal_dates_tab{
+.dateActive li {
+  background-color: #DFD4C9;
+}
+
+.dateActive {
+  background-color: #DFD4C9;
+  color: green;
+}
+
+.meal_dates_tab {
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 500%;
 }
 
 .meal_dates_tab li {
   display:block;
   float: left;
-  margin-right: 70px;
+  height: 60px;
+  /*margin-right: 70px;*/
   text-align: center;
+  width: 25%;
+  /*background-color: white;*/
 }
 
 /*search page*/

@@ -26,22 +26,32 @@
   <div class="foods">
     <div class="container">
       <h1>Food Diary</h1>
-      <div id="meal_wrapper">
-        <div ng-repeat="meal in profileCtrl.user.meals">
-          <!--click to display foods for meal-->
+      <div id="meal_wrapper" ng-repeat="meal in profileCtrl.user.meals | limitTo:-4">
+        <!--click to display foods for meal-->
+        <div ng-class="{'dateActive': $index === selectedIndex}">
           <ul class="meal_dates_tab">
-            <li class="meal_dates"><h3><a href="#" ng-click="$parent.meal = meal">{{meal.date | date:format:timezone}}</a></h3></li>
+            <li class="meal_dates"><h3><a href="#" ng-click="$parent.meal = meal; $parent.today=true; itemClicked($index); $parent.$last = $last"><span ng-show='!$last'>{{meal.date | date:format:timezone}}</span> <span ng-show='$last'>Today</span></a></h3></li>
           </ul>
         </div>
       </div>
-      <div ng-show="meal">
-        Food Items:
-        <div ng-repeat="food in meal.foods">
-          <li>{{food.item_name}} from {{food.brand_name}}
-            <p>Calories: {{food.calories}} kcal | Fat: {{food.fat}}</p>
-          </li>
+      <div class="meal_container">
+        <div ng-show="meal">
+         <h2><span ng-if="$last">Today's Meal</span> <span ng-if="!$last"> {{meal.date | date:format:timezone}}</span></h2>
+          <div ng-repeat="food in meal.foods">
+            <li>{{food.item_name}} from {{food.brand_name}}
+              <p>Calories: {{food.calories}} kcal | Fat: {{food.fat}}</p>
+            </li>
+          </div>
         </div>
-        <button ng-click="meal=false" >Close</button>
+        <div ng-hide='today' class="currentDate" ng-repeat="meal in profileCtrl.user.meals | limitTo:-1">
+          <h2>Today's Meal </h2>
+           <div ng-repeat="food in meal.foods">
+             <li>{{food.item_name}} from {{food.brand_name}}
+               <p>Calories: {{food.calories}} kcal | Fat: {{food.fat}}</p>
+             </li>
+           </div>
+           <button ng-click="meal=false" >Close</button>
+        </div>
       </div>
     </div>
   </div>
