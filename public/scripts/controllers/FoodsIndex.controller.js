@@ -1,5 +1,5 @@
-FoodsIndexController.$inject = ['FoodService'];
-function FoodsIndexController (FoodService) {
+FoodsIndexController.$inject = ['FoodService', '$location'];
+function FoodsIndexController (FoodService, $location) {
   var vm = this;
   //exports
   vm.foodList = [];

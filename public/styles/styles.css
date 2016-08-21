@@ -173,22 +173,11 @@ a {
   width: 70%;
 }
 
-
-/*.foods .container{
-  white-space:nowrap;
-  overflow-x:scroll;
-  overflow-y:hidden;
-  width: 300px;
-
-}*/
-
-
 #meal_wrapper{
   white-space:nowrap;
   overflow-x:scroll;
   overflow-y:hidden;
   width: 100%;
-  /*position: absolute;*/
 }
 
 .meal_dates_tab{
@@ -202,36 +191,22 @@ a {
   display:block;
   float: left;
   margin-right: 70px;
-  /*background-color: blue;*/
   text-align: center;
 }
-
-/*.meal_dates_tab li:after {
-  content: "";
-  display: table;
-  clear: both;
-}*/
-
 
 /*search page*/
 
 
-.results{
-  /*background-color: red;*/
-  width: 70%;
-  margin-top: 20px;
-  height: 450px;
-  overflow: auto;
-  padding: 10px;
-  border: 1px solid grey;
+.results {
+  width: 80%;
 }
 
-.items {
-  display: block;
-  margin-top: 0;
-  margin-bottom: 0;
+.items{
   float: left;
+  border: 1px solid grey;
+  padding: 10px;
   width: 50%;
+  margin: 0;
   text-align: left;
   list-style: none;
 }
@@ -246,32 +221,13 @@ a {
   margin: 0 0 10px 0;
 }
 
-hr {
-  margin-top: 20px;
-}
-
-.empty {
-  width: 50%;
-  visibility: hidden;
-  margin: 0;
-  padding: 0;
-}
-
 .show_info {
-  display: block;
-  float: left;
-  width: 50%;
+  margin-left: 55%;
+  padding: 10px;
   text-align: left;
-  /*background-color: yellow;*/
-
+  background-color: yellow;
 }
 
-.info {
-  width: 100%;
-    padding-left: 50px;
-    /*background-color: blue;*/
-}
-
-.info li {
+.show_info li {
   list-style: none;
 }

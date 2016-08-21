@@ -3,39 +3,36 @@
     <h2>Search and add food item to food diary</h2>
     <form ng-submit="foodsIndexCtrl.search()">
       <input ng-model="foodsIndexCtrl.searchTerm.item" type="text" name="item" id="search" placeholder="Starbucks">
-      <input type="submit" value="submit" ng-click="results = true">
+      <input type="submit" value="submit" ng-click="items = true">
       <button ng-click="results = false; foodsIndexCtrl.searchTerm = ''">Clear</button>
     </form>
     <h3>Results for: {{foodsIndexCtrl.searchTerm.item}} </h3>
+
+    <div ng-show="items">
       <div class="results">
-        <div ng-show="results">
-          <div ng-repeat="food in foodsIndexCtrl.foodList">
-            <div class="items">
-              <p>{{food.fields.item_name}} ({{food.fields.brand_name}})
-              <li>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}} | {{food.fields.nf_serving_weight_grams}}g</li></p>
-              <button ng-click="info = true" ng-hide="info">Show Info</button>
-              <button ng-click="info = false" ng-show="info">Close Info</button>
-              <hr>
-            </div>
-            <div class="empty" ng-hide="info">sfsdfds</div>
-            <div class="show_info" ng-show="info">
-              <div class="info">
-                <ul>
-                  <li><strong>Calories: </strong> {{food.fields.nf_calories}} <span ng-if="!food.fields.nf_calories">0 </span> kcal </li>
-                  <li><strong>Total Fat: </strong> {{food.fields.nf_total_fat}} g </li>
-                  <ul>
-                    <li><strong>Polyunsaturated Fat: </strong>{{food.fields.nf_polyunsaturated_fat}} <span ng-if="!food.fields.nf_polyunsaturated_fat">0 </span> g </li>
-                    <li><strong>Monounsaturated Fat: </strong> {{food.fields.nf_monounsaturated_fat}} <span ng-if="!food.fields.nf_monounsaturated_fat">0 </span> g </li>
-                    <li><strong>Saturated Fat: </strong> {{food.fields.nf_saturated_fat}} g </li>
-                  </ul>
-                  <li><strong>Sodium: </strong> {{food.fields.nf_sodium}} mg </li>
-                  <li><strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} mg </li>
-                </ul>
-                <button ng-click="foodsIndexCtrl.add(food)">Add</button>
-              </div>
-            </div>
+        <div class="items" ng-repeat="food in foodsIndexCtrl.foodList">
+          <div>
+            <p>{{food.fields.item_name}} ({{food.fields.brand_name}})
+            <li>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}} | {{food.fields.nf_serving_weight_grams}}g</li></p>
+            <button ng-click="$parent.food = food" ng-show="food">Show Info</button>
           </div>
+        </div>
+        <div class="show_info" ng-show="food">
+          <ul>
+            <li><strong>Calories: </strong> {{food.fields.nf_calories}} <span ng-if="!food.fields.nf_calories">0 </span> kcal </li>
+            <li><strong>Total Fat: </strong> {{food.fields.nf_total_fat}} g </li>
+            <ul>
+              <li><strong>Polyunsaturated Fat: </strong>{{food.fields.nf_polyunsaturated_fat}} <span ng-if="!food.fields.nf_polyunsaturated_fat">0 </span> g </li>
+              <li><strong>Monounsaturated Fat: </strong> {{food.fields.nf_monounsaturated_fat}} <span ng-if="!food.fields.nf_monounsaturated_fat">0 </span> g </li>
+              <li><strong>Saturated Fat: </strong> {{food.fields.nf_saturated_fat}} g </li>
+            </ul>
+            <li><strong>Sodium: </strong> {{food.fields.nf_sodium}} mg </li>
+            <li><strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} mg </li>
+            <button ng-click="foodsIndexCtrl.add(food)">Add</button>
+            <button ng-click="food = false">Close Info</button>
+          </ul>
         </div>
       </div>
     </div>
   </div>
+</div>
