@@ -11,10 +11,11 @@
     <div ng-show="items">
       <div class="results">
         <div class="items" ng-repeat="food in foodsIndexCtrl.foodList">
-          <div>
-            <p>{{food.fields.item_name}} ({{food.fields.brand_name}})
-            <li>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}} | {{food.fields.nf_serving_weight_grams}}g</li></p>
-            <button ng-click="$parent.food = food" ng-show="food">Show Info</button>
+          <div ng-class="$even ? 'odd' : 'even'">
+            <div ng-click="$parent.food = food" ng-show="food">
+              <p ng-class="{'active': $index === selectedIndex}" ng-click="itemClicked($index)">{{food.fields.item_name}} ({{food.fields.brand_name}})
+              <li>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}} | {{food.fields.nf_serving_weight_grams}}g</li></p>
+            </div>
           </div>
         </div>
         <div class="show_info" ng-show="food">
@@ -29,7 +30,7 @@
             <li><strong>Sodium: </strong> {{food.fields.nf_sodium}} mg </li>
             <li><strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} mg </li>
             <button ng-click="foodsIndexCtrl.add(food)">Add</button>
-            <button ng-click="food = false">Close Info</button>
+            <button ng-click="food = false; clear()">Close Info</button>
           </ul>
         </div>
       </div>

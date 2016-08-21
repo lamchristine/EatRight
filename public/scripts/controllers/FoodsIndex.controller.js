@@ -1,5 +1,5 @@
-FoodsIndexController.$inject = ['FoodService', '$location'];
-function FoodsIndexController (FoodService, $location) {
+FoodsIndexController.$inject = ['FoodService', '$location', '$scope'];
+function FoodsIndexController (FoodService, $location, $scope) {
   var vm = this;
   //exports
   vm.foodList = [];
@@ -8,6 +8,13 @@ function FoodsIndexController (FoodService, $location) {
   vm.searchTerm = "";
   vm.add = add;
 
+  $scope.itemClicked = function($index) {
+    $scope.selectedIndex = $index;
+  };
+
+  $scope.clear = function ($index){
+    $scope.selectedIndex = !$index;
+  };
 
   //initialization
   console.log(vm.helloWorld);
