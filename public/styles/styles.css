@@ -178,16 +178,12 @@ a {
 .meal_container {
   background-color: #DFD4C9;
   margin-top: 80px;
-  padding: 10px;
+  padding: 20px;
 }
 
-.dateActive li {
-  background-color: #DFD4C9;
-}
-
-.dateActive {
-  background-color: #DFD4C9;
-  color: green;
+.meal_container h2 {
+  margin: 0 0 15px 0;
+  font-weight: bold;
 }
 
 .meal_dates_tab {
@@ -200,10 +196,18 @@ a {
   display:block;
   float: left;
   height: 60px;
-  /*margin-right: 70px;*/
   text-align: center;
   width: 25%;
-  /*background-color: white;*/
+  background-color: white;
+}
+
+.dateActive li {
+  background-color: #DFD4C9;
+}
+
+.dateActive {
+  background-color: #DFD4C9;
+  color: green;
 }
 
 /*search page*/

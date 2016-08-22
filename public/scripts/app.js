@@ -12,4 +12,10 @@ angular
   .controller('HomeIndexController', HomeIndexController)
   .service('UserService', UserService)
   .service('FoodService', FoodService)
-  .config(configRoutes);
+  .config(configRoutes)
+  .filter('startFrom', function(){
+    return function(input, start) {
+      start = +start;
+      return input.slice(start);
+    };
+  });

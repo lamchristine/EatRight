@@ -7,6 +7,7 @@ function FoodsIndexController (FoodService, $location, $scope) {
   vm.search = search;
   vm.searchTerm = "";
   vm.add = add;
+  $scope.numberOfPages = numberOfPages;
 
   $scope.itemClicked = function($index) {
     $scope.selectedIndex = $index;
@@ -15,6 +16,16 @@ function FoodsIndexController (FoodService, $location, $scope) {
   $scope.clear = function ($index){
     $scope.selectedIndex = !$index;
   };
+
+
+  $scope.currentPage = 0;
+  $scope.pageSize = 5;
+
+
+  function numberOfPages() {
+    return Math.ceil(vm.foodList.length/$scope.pageSize);
+  }
+
 
   //initialization
   console.log(vm.helloWorld);

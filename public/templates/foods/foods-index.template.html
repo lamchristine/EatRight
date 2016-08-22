@@ -1,3 +1,4 @@
+<!-- <div ng-controller = "FoodsIndexController"> -->
 <div class="search">
   <div class="container">
     <h2>Search and add food item to food diary</h2>
@@ -9,15 +10,22 @@
     <h3>Results for: {{foodsIndexCtrl.searchTerm.item}} </h3>
 
     <div ng-show="items">
-      <div class="results">
-        <div class="items" ng-repeat="food in foodsIndexCtrl.foodList">
-          <div ng-class="$even ? 'odd' : 'even'">
-            <div ng-click="$parent.food = food" ng-show="food">
-              <p ng-class="{'active': $index === selectedIndex}" ng-click="itemClicked($index)">{{food.fields.item_name}} ({{food.fields.brand_name}})
-              <li>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}} | {{food.fields.nf_serving_weight_grams}}g</li></p>
+      <div class="results" ng-init="limit=5">
+        <div class="items">
+          <div ng-repeat="food in foodsIndexCtrl.foodList | startFrom: currentPage*pageSize | limitTo:pageSize">
+            <div ng-class="$even ? 'odd' : 'even'">
+              <div ng-click="$parent.food = food" ng-show="food">
+                <p ng-class="{'active': $index === selectedIndex}" ng-click="itemClicked($index)">{{food.fields.item_name}} ({{food.fields.brand_name}})
+                <li>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}} | {{food.fields.nf_serving_weight_grams}}g</li></p>
+              </div>
             </div>
           </div>
+
+          <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+            {{currentPage+1}}/{{numberOfPages()}}
+          <button ng-disabled="currentPage >= foodsIndexCtrl.foodList.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
         </div>
+        
         <div class="show_info" ng-show="food">
           <ul>
             <li><strong>Calories: </strong> {{food.fields.nf_calories}} <span ng-if="!food.fields.nf_calories">0 </span> kcal </li>
