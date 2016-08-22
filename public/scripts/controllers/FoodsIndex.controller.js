@@ -37,6 +37,8 @@ function FoodsIndexController (FoodService, $location, $scope) {
     FoodService.query(vm.searchTerm).then(function (foods) {
       console.log('foods from the controller', foods);
       vm.foodList = foods;
+      $scope.currentPage = 0;
+      $scope.pageSize = 5;
     });
   }
 

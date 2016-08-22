@@ -2,15 +2,19 @@
 <div class="search">
   <div class="container">
     <h2>Search and add food item to food diary</h2>
-    <form ng-submit="foodsIndexCtrl.search()">
-      <input ng-model="foodsIndexCtrl.searchTerm.item" type="text" name="item" id="search" placeholder="Starbucks">
-      <input type="submit" value="submit" ng-click="items = true">
-      <button ng-click="results = false; foodsIndexCtrl.searchTerm = ''">Clear</button>
+    <form ng-submit="foodsIndexCtrl.search()" name="searchForm">
+      <input ng-required = "true" ng-model="foodsIndexCtrl.searchTerm.item" type="text" name="item" id="search" placeholder="Starbucks">
+      <input ng-disabled="searchForm.$invalid" type="submit" value="submit" ng-click="items = true">
+      <button ng-click="items = false; foodsIndexCtrl.searchTerm = ''">Clear</button>
     </form>
-    <h3>Results for: {{foodsIndexCtrl.searchTerm.item}} </h3>
 
-    <div ng-show="items">
-      <div class="results" ng-init="limit=5">
+    <div ng-show="foodsIndexCtrl.foodList.length < 1 && items">
+      No results were found.
+    </div>
+
+    <div ng-show="items &&  foodsIndexCtrl.foodList.length > 0">
+     <h3>Results for: {{foodsIndexCtrl.searchTerm.item}} </h3>
+      <div class="results">
         <div class="items">
           <div ng-repeat="food in foodsIndexCtrl.foodList | startFrom: currentPage*pageSize | limitTo:pageSize">
             <div ng-class="$even ? 'odd' : 'even'">
@@ -20,12 +24,11 @@
               </div>
             </div>
           </div>
-
           <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
             {{currentPage+1}}/{{numberOfPages()}}
           <button ng-disabled="currentPage >= foodsIndexCtrl.foodList.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
         </div>
-        
+
         <div class="show_info" ng-show="food">
           <ul>
             <li><strong>Calories: </strong> {{food.fields.nf_calories}} <span ng-if="!food.fields.nf_calories">0 </span> kcal </li>
