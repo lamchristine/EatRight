@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
 
 var foodSchema = new Schema({
   created: {type: Date, default: Date.now},
+  type: String, 
   item_name: String,
   brand_name: String,
   serving_size_qty: Number,
@@ -11,6 +12,9 @@ var foodSchema = new Schema({
   calories: Number,
   calories_from_fat: Number,
   sat_fat: Number,
+  carb: Number,
+  fiber: Number,
+  protein: Number,
   mono_fat: Number,
   poly_fat: Number,
   trans_fat: Number,

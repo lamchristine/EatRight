@@ -1,6 +1,96 @@
 <!-- <div ng-controller = "FoodsIndexController"> -->
-<div class="search">
+<!-- <div class="search">
   <div class="container">
+    <hr>
+    <div style="text-align:center"> today's date</div>
+    <hr>
+    <div style="width:70%;float:left;">
+      <div style="padding-right:10px">
+        <div style="background-color:lightgrey;padding:20px;height:auto;overflow:hidden">
+          <div style="width:70%;float:left">
+            <span style="font-size:30px;">950</span>
+            <span>calories consumed today</span>
+            <div style="background-color:grey;height:5px;margin-top:5px;margin-bottom:5px"></div>
+            <div style="font-size:13px">Budget: 1000Cal</div>
+          </div>
+          <div style="width:30%;float:left">
+            <div style="float:right;height:130px;line-height:0;text-align:center;width:130px;border-radius:50%;background-color:#FFF;display:table;">
+              <div style="display:table-cell;vertical-align:middle;width:100%">
+                <span style="display:block;font-size:30px;line-height:30px">650</span>
+                <span style="display:block;font-size:10px;line-height:10px">CALORIES</span>
+                <span style="display:block;font-size:10px;line-height:10px"> LEFT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="width:100%;background-color:green;margin-top:10px;height:50px;line-height:50px;">
+          <div style="margin-left:10px;color:#FFF;float:left">FOOD</div>
+          <div style="margin-left:10px;color:#FFF;float:right;margin-right:10px;font-size:13px">Show Nutrient Details<i class="fa fa-plus" style="margin-left:5px"></i></div>
+        </div>
+        <div style="width:100%;">
+          <div style="background-color:lightgrey;height:50px;line-height:50px;display:flex;justify-content:space-between">
+            <div style="margin-left:10px;">BREAKFAST</div>
+            <div style="margin-left:10px;;margin-right:10px;font-size:13px">Calories</div>
+          </div>
+          <div style="margin:20px 10px;font-size:13px"><a href="#">Add Food <i class="fa fa-plus"></i></a></div>
+        </div>
+        <div style="width:100%;">
+          <div style="background-color:lightgrey;height:50px;line-height:50px;display:flex;justify-content:space-between">
+            <div style="margin-left:10px;">LUNCH</div>
+            <div style="margin-left:10px;;margin-right:10px;font-size:13px">Calories</div>
+          </div>
+          <div style="margin:20px 10px;font-size:13px"><a href="#">Add Food <i class="fa fa-plus"></i></a></div>
+        </div>
+        <div style="width:100%;">
+          <div style="background-color:lightgrey;height:50px;line-height:50px;display:flex;justify-content:space-between">
+            <div style="margin-left:10px;">DINNER</div>
+            <div style="margin-left:10px;;margin-right:10px;font-size:13px">Calories</div>
+          </div>
+          <div style="margin:20px 10px;font-size:13px"><a href="#">Add Food <i class="fa fa-plus"></i></a></div>
+        </div>
+        <div style="width:100%;">
+          <div style="background-color:lightgrey;height:50px;line-height:50px;display:flex;justify-content:space-between">
+            <div style="margin-left:10px;">SNACKS</div>
+            <div style="margin-left:10px;;margin-right:10px;font-size:13px">Calories</div>
+          </div>
+          <div style="margin:20px 10px;font-size:13px"><a href="#">Add Food <i class="fa fa-plus"></i></a></div>
+        </div>
+      </div>
+    </div>
+    <div style="width:30%;float:left;">
+      <div style="padding-left:0px">
+        <div style="background-color:green;height:50px;line-height:50px;">
+          <div style="margin-left:10px;color:#FFF">DAILY NUTRITION</div>
+        </div>
+        <div style="width:100%;font-size:15px;margin-top:15px">
+          <div style="float:left">Calories</div>
+          <div style="float:right">325Cal/1,200Cal</div>
+          <div style="clear:both;background-color:lightgrey;height:5px;margin-top:10px"></div>
+        </div>
+        <div style="width:100%;font-size:15px;margin-top:15px">
+          <div style="float:left">Fat</div>
+          <div style="float:right">325Cal/1,200Cal</div>
+          <div style="clear:both;background-color:lightgrey;height:5px;margin-top:10px"></div>
+        </div>
+        <div style="width:100%;font-size:15px;margin-top:15px">
+          <div style="float:left">Cholesterol</div>
+          <div style="float:right">325Cal/1,200Cal</div>
+          <div style="clear:both;background-color:lightgrey;height:5px;margin-top:10px"></div>
+        </div>
+        <div style="width:100%;font-size:15px;margin-top:15px">
+          <div style="float:left">Saturated Fat</div>
+          <div style="float:right">325Cal/1,200Cal</div>
+          <div style="clear:both;background-color:lightgrey;height:5px;margin-top:10px"></div>
+        </div>
+        <div style="width:100%;font-size:15px;margin-top:15px">
+          <div style="float:left">Sodium</div>
+          <div style="float:right">325Cal/1,200Cal</div>
+          <div style="clear:both;background-color:lightgrey;height:5px;margin-top:10px"></div>
+        </div>
+      </div>
+    </div>
+
+
     <h2>Search and add food item to food diary</h2>
     <form ng-submit="foodsIndexCtrl.search()" name="searchForm">
       <input ng-required = "true" ng-model="foodsIndexCtrl.searchTerm.item" type="text" name="item" id="search" placeholder="Starbucks">
@@ -22,7 +112,7 @@
                 <p ng-class="{'active': $index === selectedIndex}" ng-click="itemClicked($index)">{{food.fields.item_name}} ({{food.fields.brand_name}})
                 <li>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}} | {{food.fields.nf_serving_weight_grams}}g</li></p>
               </div>
-            </div>
+            </div>{{food.fields}}
           </div>
           <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
             {{currentPage+1}}/{{numberOfPages()}}
@@ -47,4 +137,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

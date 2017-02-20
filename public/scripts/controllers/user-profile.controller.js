@@ -1,14 +1,23 @@
-ProfileController.$inject = ["$location", "UserService", "$http", "$scope"]; // minification protection
-function ProfileController ($location, UserService, $http, $scope) {
+ProfileController.$inject = ["$location", "UserService", "$http", "$scope", "$uibModal"]; // minification protection
+function ProfileController ($location, UserService, $http, $scope, $uibModal) {
   var vm = this;
   vm.new_profile = {}; // form data
+  $scope.numberOfPages = numberOfPages;
 
-
-  $scope.selectedIndex = 3;
+  $scope.selectedIndex = 0;
 
   $scope.itemClicked = function($index) {
     $scope.selectedIndex = $index;
   };
+
+
+  $scope.currentPage = 0;
+  $scope.pageSize = 4;
+
+
+  function numberOfPages() {
+    return Math.ceil(vm.user.meals.length/$scope.pageSize);
+  }
 
 
   vm.updateProfile = function() {
@@ -29,6 +38,7 @@ function ProfileController ($location, UserService, $http, $scope) {
     function onGetSuccess(response) {
       console.log("response data user1111", response.data.meals);
       vm.user = response.data;
+      // vm.last = response.data.meals[response.data.meals.length-1]
     }
 
     function onGetError(response) {
@@ -52,5 +62,19 @@ function ProfileController ($location, UserService, $http, $scope) {
       console.log("Error in getting foods", response);
       $location.path('/profile');
     }
+  }
+
+  vm.taco=function() {
+    console.log("ASfdsa")
+    var modalInstance = $uibModal.open({
+      controller: 'FoodsIndexController',
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: './templates/modals/foods-index.template.html',
+      size: 'lg',
+      resolve: {
+        // patient: 10
+      }
+    });
   }
 }

@@ -1,7 +1,8 @@
 angular
   .module('EatRight', [
     'ngRoute',
-    'satellizer'
+    'satellizer',
+    'ui.bootstrap'
   ])
   .controller('MainController', MainController)
   .controller('FoodsIndexController', FoodsIndexController)

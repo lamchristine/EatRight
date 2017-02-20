@@ -7,16 +7,19 @@
 
     <!-- STYLESSHEETS -->
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="styles/styles.css">
 
     <!-- VENDOR SCRIPTS -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
+    <!-- <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script> -->
     <script src="https://use.fontawesome.com/e95a6637a8.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/satellizer/0.13.4/satellizer.min.js"></script>
 
     <!-- APPLICATION SCRIPTS -->
-    <script src="scripts/controllers/FoodsIndex.controller.js"></script>
+    <script src="templates/modals/FoodsIndex.controller.js"></script>
     <script src="scripts/services/food.service.js"></script>
     <script type="text/javascript" src="scripts/controllers/main.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/auth-login.controller.js"></script>
@@ -43,7 +46,7 @@
     </div>
 
     <div class="site-content">
-      <div class="container">
+      <div class="background">
         <div ng-view></div>
       </div>
     </div>

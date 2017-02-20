@@ -8,7 +8,7 @@ function configRoutes ($routeProvider, $locationProvider) {
       controller: 'HomeIndexController'
     })
     .when('/search', {
-      templateUrl: 'templates/foods/foods-index.template.html',
+      templateUrl: 'templates/modals/foods-index.template.html',
       controllerAs: 'foodsIndexCtrl',
       controller: 'FoodsIndexController'
     })
