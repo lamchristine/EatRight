@@ -2,6 +2,7 @@ ProfileController.$inject = ["$location", "UserService", "$http", "$scope", "$ui
 function ProfileController ($location, UserService, $http, $scope, $uibModal) {
   var vm = this;
   vm.new_profile = {}; // form data
+
   $scope.numberOfPages = numberOfPages;
 
   $scope.selectedIndex = 0;
@@ -64,16 +65,19 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal) {
     }
   }
 
-  vm.taco=function() {
-    console.log("ASfdsa")
+  vm.addFood=function(type) {
+    console.log("foodtype:", type)
     var modalInstance = $uibModal.open({
       controller: 'FoodsIndexController',
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
       templateUrl: './templates/modals/foods-index.template.html',
+      windowClass: 'display-food-modal',
       size: 'lg',
       resolve: {
-        // patient: 10
+        type: function() {
+            return type
+          }
       }
     });
   }

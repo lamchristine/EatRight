@@ -1,5 +1,5 @@
-FoodsIndexController.$inject = ['FoodService', '$location', '$scope'];
-function FoodsIndexController (FoodService, $location, $scope) {
+FoodsIndexController.$inject = ['FoodService', '$location', '$scope', 'type', '$uibModalInstance'];
+function FoodsIndexController (FoodService, $location, $scope, type, $uibModalInstance) {
   var vm = this;
   //exports
   // vm.foodList = [];
@@ -8,7 +8,11 @@ function FoodsIndexController (FoodService, $location, $scope) {
   // vm.searchTerm = "";
   // vm.add = add;
   $scope.numberOfPages = numberOfPages;
+  $scope.type = type;
 
+  $scope.closeModal = function() {
+    $uibModalInstance.close();
+  }
   $scope.itemClicked = function($index) {
     $scope.selectedIndex = $index;
   };
@@ -56,7 +60,7 @@ function FoodsIndexController (FoodService, $location, $scope) {
 
   $scope.add=function (food) {
     console.log("add food clicked", food);
-    var type = "Breakfast";
+    var type = $scope.type;
     var item_name = food.fields.item_name;
     var brand_name = food.fields.brand_name;
     var calories = food.fields.nf_calories;

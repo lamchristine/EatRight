@@ -1,7 +1,12 @@
 <!-- <div ng-controller = "FoodsIndexController"> -->
-<div class="search" style="height:600px">
+<div class="search" style="height:600px;position:relative">
+  <div style="position:absolute; right:-21px;top:-43px;height:35px;line-height:0;text-align:center;width:35px;border-radius:50%;background-color:black;display:table;border:2px solid #FFF;box-shadow: 0px 1px 4px 0px rgba(0,0,0,1);" ng-click="food = false; clear()">
+    <div style="display:table-cell;vertical-align:middle;width:100%;cursor:pointer" ng-click="closeModal()">
+      <i class="fa fa-remove fa-lg" style="display:block;color:#FFF"></i>
+    </div>
+  </div>
   <div class="background">
-    <h2 ng-click="paco()">Search and add food item to food diary</h2>
+    <h2>Add {{type}} item to food diary</h2>
     <!-- <form ng-submit="search()" name="searchForm">
       <input ng-required = "true" ng-model="searchTerm.item" type="text" name="item" id="search" placeholder="Starbucks">
       <input ng-disabled="searchForm.$invalid" type="submit" value="submit" ng-click="items = true">
@@ -19,10 +24,15 @@
       <div class="results">
         <div class="items">
           <div ng-repeat="food in foodList | startFrom: currentPage*pageSize  | limitTo:pageSize">
-            <div ng-class="$even ? 'odd' : 'even'">
-              <div ng-click="$parent.food = food" ng-show="food">
-                <p ng-class="{'active': $index === selectedIndex}" ng-click="itemClicked($index)">{{food.fields.item_name}} ({{food.fields.brand_name}})
-                <li>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}} | {{food.fields.nf_serving_weight_grams}}g</li></p>
+            <div class="food-info" ng-class="$even ? 'odd' : 'even'" ng-click="itemClicked($index)">
+              <div ng-click="$parent.food = food" ng-show="food" style="display:flex;">
+                <div style="width:60%">
+                  <p ng-class="{'active': $index === selectedIndex}" >{{food.fields.item_name}} ({{food.fields.brand_name}})</p>
+                  <li>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}} | {{food.fields.nf_serving_weight_grams}} g </li>
+                </div>
+                <div style="width:40%;text-align:right;align-self:center;">
+                  <a ng-click="add(food)" href="javascript:void(0)">Add</a>
+                </div>
               </div>
             </div>
           </div>
@@ -31,20 +41,80 @@
           <button ng-disabled="currentPage >= foodsIndexCtrl.foodList.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
         </div>
 
-        <div class="show_info" ng-show="food">
-          <ul>
-            <li><strong>Calories: </strong> {{food.fields.nf_calories}} <span ng-if="!food.fields.nf_calories">0 </span> kcal </li>
-            <li><strong>Total Fat: </strong> {{food.fields.nf_total_fat}} g </li>
-            <ul>
-              <li><strong>Polyunsaturated Fat: </strong>{{food.fields.nf_polyunsaturated_fat}} <span ng-if="!food.fields.nf_polyunsaturated_fat">0 </span> g </li>
-              <li><strong>Monounsaturated Fat: </strong> {{food.fields.nf_monounsaturated_fat}} <span ng-if="!food.fields.nf_monounsaturated_fat">0 </span> g </li>
-              <li><strong>Saturated Fat: </strong> {{food.fields.nf_saturated_fat}} g </li>
-            </ul>
-            <li><strong>Sodium: </strong> {{food.fields.nf_sodium}} mg </li>
-            <li><strong>Cholesterol: </strong> {{food.fields.nf_cholesterol}} mg </li>
-            <button ng-click="add(food)">Add</button>
-            <button ng-click="food = false; clear()">Close Info</button>
-          </ul>
+        <div class="show_info" ng-show="food" style="position:relative">
+
+          <div>Nutrition Facts</div>
+          <hr style="margin-top:10px;margin-bottom:10px">
+          <div>Servings: {{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}} | {{food.fields.nf_serving_weight_grams}} g</div>
+          <hr style="margin-top:10px;margin-bottom:10px">
+          <div style="display:flex;margin-bottom:5px">
+            <div style="width:25%;font-weight:bold">
+              Calories
+            </div>
+            <div style="width:25%;text-align:right">
+              {{food.fields.nf_calories}} <span ng-if="!food.fields.nf_calories">0 </span> kcal
+            </div>
+            <div style="width:25%;margin-left:30px;font-weight:bold">
+              Sodium
+            </div>
+            <div style="width:25%;text-align:right">
+              {{food.fields.nf_sodium}} <span ng-if="!food.fields.nf_sodium">0 </span> mg
+            </div>
+          </div>
+          <div style="display:flex;margin-bottom:5px">
+            <div style="width:35%;font-weight:bold">
+              Total Fat
+            </div>
+            <div style="width:15%;text-align:right">
+              {{food.fields.nf_total_fat}} <span ng-if="!food.fields.nf_total_fat">0 </span> g
+            </div>
+            <div style="width:40%;margin-left:30px;font-weight:bold">
+              Total Carbs
+            </div>
+            <div style="width:10%;text-align:right">
+              {{food.fields.nf_total_carbohydrate}} g
+            </div>
+          </div>
+          <div style="display:flex;margin-bottom:5px">
+            <div style="width:40%;font-weight:bold">
+              Saturated
+            </div>
+            <div style="width:10%;text-align:right">
+              {{food.fields.nf_saturated_fat}} g
+            </div>
+            <div style="width:40%;margin-left:30px;font-weight:bold">
+              Dietary Fiber
+            </div>
+            <div style="width:10%;text-align:right">
+              {{food.fields.nf_dietary_fiber}} <span ng-if="!food.fields.nf_dietary_fiber">0 </span> g
+            </div>
+          </div>
+          <div style="display:flex;margin-bottom:5px">
+            <div style="width:40%;font-weight:bold">
+              Polyunsaturated
+            </div>
+            <div style="width:10%;text-align:right">
+              {{food.fields.nf_polyunsaturated_fat}} <span ng-if="!food.fields.nf_polyunsaturated_fat">0 </span> g
+            </div>
+            <div style="width:35%;margin-left:30px;font-weight:bold">
+              Cholesterol
+            </div>
+            <div style="width:15%;text-align:right">
+              {{food.fields.nf_cholesterol}} mg
+            </div>
+          </div>
+          <div style="display:flex;margin-right:30px">
+            <div style="width:40%;font-weight:bold">
+              Monounsaturated
+            </div>
+            <div style="width:10%;text-align:right">
+              {{food.fields.nf_monounsaturated_fat}} <span ng-if="!food.fields.nf_monounsaturated_fat">0 </span> g
+            </div>
+          </div>
+          <div style="position:absolute; bottom:20px">
+            <!-- <div ng-click="add(food)" style="border-radius: 4px;background-color: #FFF;padding: 10px 15px;color:lightgrey;display:inline-block">Add</div> -->
+            <div ng-click="food = false; clear()" style="border-radius: 4px;background-color: #FFF;padding: 10px 15px;color:lightgrey;display:inline-block">Close Info</div>
+          </div>
         </div>
       </div>
     </div>
