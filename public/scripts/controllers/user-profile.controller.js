@@ -1,5 +1,5 @@
-ProfileController.$inject = ["$location", "UserService", "$http", "$scope", "$uibModal"]; // minification protection
-function ProfileController ($location, UserService, $http, $scope, $uibModal) {
+ProfileController.$inject = ["$location", "UserService", "$http", "$scope", "$uibModal", "$filter"]; // minification protection
+function ProfileController ($location, UserService, $http, $scope, $uibModal, $filter) {
   var vm = this;
   vm.new_profile = {}; // form data
 
@@ -39,7 +39,12 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal) {
     function onGetSuccess(response) {
       console.log("response data user1111", response.data.meals);
       vm.user = response.data;
-      // vm.last = response.data.meals[response.data.meals.length-1]
+      vm.meals = response.data.meals;
+
+      //on page load, show food list for current date
+      var currentDate=$filter("date")(new Date(), 'MM-dd-yyyy');
+      vm.SELECTEDDATE = new Date(currentDate);
+      getFoodList(currentDate);
     }
 
     function onGetError(response) {
@@ -48,10 +53,13 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal) {
     }
   }
 
+
+
   addMeal();
   console.log("addMeal()")
   var current = new Date().setHours(0,0,0,0);
   function addMeal (current) {
+    console.log(current)
     $http
       .post('/api/users/' + UserService.user.user_id + '/meals')
       .then(onGetSuccess, onGetError);
@@ -66,7 +74,6 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal) {
   }
 
   vm.addFood=function(type) {
-    console.log("foodtype:", type)
     var modalInstance = $uibModal.open({
       controller: 'FoodsIndexController',
       ariaLabelledBy: 'modal-title',
@@ -76,9 +83,52 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal) {
       size: 'lg',
       resolve: {
         type: function() {
-            return type
-          }
+            return type;
+          },
+        date: vm.SELECTEDDATE
       }
     });
+  };
+
+  function getFoodList(selectedDate) {
+    //get meal for selected date
+    for (var i = 0; i < vm.meals.length; i++) {
+      var mealDate = $filter("date")(vm.meals[i].date, 'MM-dd-yyyy');
+      if (mealDate === selectedDate) {
+        vm.meal = vm.meals[i];
+        console.log('today meal', vm.meal);
+        vm.noMeal = false;
+        break;
+      } else {
+        vm.noMeal = true;
+      }
+    };
+
+    vm.breakfastArr = [];
+    vm.lunchArr = [];
+    vm.dinnerArr = [];
+
+    //sort meal by type
+    if (vm.noMeal !== true) {
+      for (var i = 0; i < vm.meal.foods.length; i++) {
+        switch (vm.meal.foods[i].type) {
+          case 'breakfast':
+            vm.breakfastArr.push(vm.meal.foods[i]);
+            break;
+          case 'lunch':
+            vm.lunchArr.push(vm.meal.foods[i]);
+            break;
+          case 'dinner':
+            vm.dinnerArr.push(vm.meal.foods[i]);
+            break;
+        }
+      }
+    }
   }
+
+  vm.changeDate=function() {
+    console.log(vm.SELECTEDDATE);
+    var date = $filter("date")(vm.SELECTEDDATE, 'MM-dd-yyyy');
+    getFoodList(date);
+  };
 }

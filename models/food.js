@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
 
 var foodSchema = new Schema({
   created: {type: Date, default: Date.now},
-  type: String, 
+  date: Date,
+  type: String,
   item_name: String,
   brand_name: String,
   serving_size_qty: Number,

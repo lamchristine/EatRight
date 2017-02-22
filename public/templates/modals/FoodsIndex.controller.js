@@ -1,5 +1,5 @@
-FoodsIndexController.$inject = ['FoodService', '$location', '$scope', 'type', '$uibModalInstance'];
-function FoodsIndexController (FoodService, $location, $scope, type, $uibModalInstance) {
+FoodsIndexController.$inject = ['FoodService', '$location', '$scope', 'type', '$uibModalInstance', 'date'];
+function FoodsIndexController (FoodService, $location, $scope, type, $uibModalInstance, date) {
   var vm = this;
   //exports
   // vm.foodList = [];
@@ -45,6 +45,7 @@ function FoodsIndexController (FoodService, $location, $scope, type, $uibModalIn
 
   //initialization
   console.log(vm.helloWorld);
+  console.log(date)
 
   //implementations
   // function search() {
@@ -78,6 +79,7 @@ function FoodsIndexController (FoodService, $location, $scope, type, $uibModalIn
     var trans_fat = food.fields.nf_trans_fatty_acid;
     console.log('item_name', item_name);
     FoodService.create({
+      date: date,
       type: type,
       item_name: item_name,
       brand_name: brand_name,

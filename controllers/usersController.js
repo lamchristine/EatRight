@@ -53,7 +53,9 @@ function updateCurrentUser(req, res) {
 
 function showCurrentUser (req, res) {
   User.findById(req.user_id, function (err, user) {
+      console.log(user)
     res.send(user);
+
     // res.send(user.populate('posts'));
   });
 }
@@ -75,7 +77,7 @@ function addMeal (req, res) {
     .populate('users')
     .populate('foods')
     .exec (function (err, foundUserMeal) {
-      // console.log("---------------", foundUserMeal)
+      console.log("---------------", foundUserMeal)
       //if user meal exists...
       if (foundUserMeal.length>0) {
         //check to see if last meal for current date

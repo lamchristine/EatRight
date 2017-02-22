@@ -21,7 +21,7 @@ function create(req, res) {
       console.log("[[[[[[[[[[[", foundUserMeal);
       for (var i = 0; i <foundUserMeal.length;i++) {
         //finding the today's meal
-        if ( foundUserMeal[i].date.valueOf() === new Date().setHours(0,0,0,0) ) {
+        if ( foundUserMeal[i].date.valueOf() === add_food.date.valueOf() ) {
           foundUserMeal[i].foods.push(add_food);
 
           // total calories per meal
