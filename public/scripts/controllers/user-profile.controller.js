@@ -55,23 +55,23 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal, $f
 
 
 
-  addMeal();
-  console.log("addMeal()")
-  var current = new Date().setHours(0,0,0,0);
-  function addMeal (current) {
-    console.log(current)
-    $http
-      .post('/api/users/' + UserService.user.user_id + '/meals')
-      .then(onGetSuccess, onGetError);
-
-    function onGetSuccess(response) {
-      console.log("response data user", response);
-    }
-    function onGetError(response) {
-      console.log("Error in getting foods", response);
-      $location.path('/profile');
-    }
-  }
+  // addMeal();
+  // console.log("addMeal()")
+  // var current = new Date().setHours(0,0,0,0);
+  // function addMeal (current) {
+  //   console.log(current)
+  //   $http
+  //     .post('/api/users/' + UserService.user.user_id + '/meals')
+  //     .then(onGetSuccess, onGetError);
+  //
+  //   function onGetSuccess(response) {
+  //     console.log("response data user", response);
+  //   }
+  //   function onGetError(response) {
+  //     console.log("Error in getting foods", response);
+  //     $location.path('/profile');
+  //   }
+  // }
 
   vm.addFood=function(type) {
     var modalInstance = $uibModal.open({
@@ -85,42 +85,78 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal, $f
         type: function() {
             return type;
           },
-        date: vm.SELECTEDDATE
+        date: vm.SELECTEDDATE,
+        meal: function() {
+            return vm.meal;
+          },
       }
+    });
+      modalInstance.result.then(function (data) {
+        console.log(data)
+        taco(data)
+
     });
   };
 
+  function taco(food) {
+
+    $http
+      .get('/api/users/' + UserService.user.user_id)
+      .then(onGetSuccess, onGetError);
+
+    function onGetSuccess(response) {
+      console.log("response data user1111", response.data.meals);
+      vm.user = response.data;
+      vm.meals = response.data.meals;
+
+      var date = $filter("date")(food.date, 'MM-dd-yyyy')
+      getFoodList(date);
+    }
+
+    function onGetError(response) {
+      console.log("Error in getting foods", response);
+      $location.path('/profile');
+    }
+  }
+
   function getFoodList(selectedDate) {
-    //get meal for selected date
-    for (var i = 0; i < vm.meals.length; i++) {
-      var mealDate = $filter("date")(vm.meals[i].date, 'MM-dd-yyyy');
-      if (mealDate === selectedDate) {
-        vm.meal = vm.meals[i];
-        console.log('today meal', vm.meal);
-        vm.noMeal = false;
-        break;
-      } else {
-        vm.noMeal = true;
-      }
-    };
+    if(vm.meals.length>1){
+      //get meal for selected date
+      for (var i = 0; i < vm.meals.length; i++) {
+        var mealDate = $filter("date")(vm.meals[i].date, 'MM-dd-yyyy');
+        if (mealDate === selectedDate) {
+          vm.meal = vm.meals[i];
+          console.log('today meal', vm.meal);
+          vm.noMeal = false;
+          break;
+        } else {
+          vm.meal=null;
+          vm.noMeal = true;
+        }
+      };
 
-    vm.breakfastArr = [];
-    vm.lunchArr = [];
-    vm.dinnerArr = [];
+      vm.breakfastArr = [];
+      vm.lunchArr = [];
+      vm.dinnerArr = [];
+      vm.snackArr = [];
 
-    //sort meal by type
-    if (vm.noMeal !== true) {
-      for (var i = 0; i < vm.meal.foods.length; i++) {
-        switch (vm.meal.foods[i].type) {
-          case 'breakfast':
-            vm.breakfastArr.push(vm.meal.foods[i]);
-            break;
-          case 'lunch':
-            vm.lunchArr.push(vm.meal.foods[i]);
-            break;
-          case 'dinner':
-            vm.dinnerArr.push(vm.meal.foods[i]);
-            break;
+      //sort meal by type
+      if (vm.noMeal !== true) {
+        for (var i = 0; i < vm.meal.foods.length; i++) {
+          switch (vm.meal.foods[i].type) {
+            case 'breakfast':
+              vm.breakfastArr.push(vm.meal.foods[i]);
+              break;
+            case 'lunch':
+              vm.lunchArr.push(vm.meal.foods[i]);
+              break;
+            case 'dinner':
+              vm.dinnerArr.push(vm.meal.foods[i]);
+              break;
+            case 'snack':
+              vm.snackArr.push(vm.meal.foods[i]);
+              break;
+          }
         }
       }
     }

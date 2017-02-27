@@ -100,4 +100,5 @@ function UserService($http, $q, $auth){
   function isLoggedIn(){
     return !!self.user.user_id;
   }
+
 }

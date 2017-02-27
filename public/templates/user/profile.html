@@ -98,6 +98,8 @@
               <div style="margin-left:10px;">SNACKS</div>
               <div style="margin-left:10px;;margin-right:10px;font-size:13px">Calories</div>
             </div>
+            <div ng-repeat="snack in profileCtrl.snackArr">{{snack.brand_name}}</div>
+
             <div style="margin:20px 10px;font-size:13px"><a href="javascript:void(0)" ng-click="profileCtrl.addFood('snack')">Add Food <i class="fa fa-plus"></i></a></div>
           </div>
         </div>

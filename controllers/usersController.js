@@ -71,31 +71,63 @@ function showUserProfile (req, res) {
 }
 
 function addMeal (req, res) {
+console.log("asfasfasfsa", req.body);
 
   Meal
     .find({user:req.user_id}) //finding all meals by user id
     .populate('users')
     .populate('foods')
-    .exec (function (err, foundUserMeal) {
-      console.log("---------------", foundUserMeal)
-      //if user meal exists...
-      if (foundUserMeal.length>0) {
-        //check to see if last meal for current date
-        if ( foundUserMeal[foundUserMeal.length-1].date.valueOf() === new Date().setHours(0,0,0,0) ) {
-          console.log("todays meal already exists for user");
-        } else {
-          //if not, then add new Meal for current date
+    .exec (function (err, foundUserMeals) {
+      console.log("---------------", foundUserMeals)
+      if (foundUserMeals.length < 1) { //patient has no meals
+        //add new meal
+        var add_meal = new Meal({
+          date: req.body.date,
+          user: req.user_id,
+          total: 0,
+          foods:[]
+        });
+        add_meal.save(function (err, add_meal) {
+          console.log("new meal added to meal db", add_meal);
+          res.send(add_meal);
+        });
+        //add new meal to User
+        User
+          .findById(req.user_id)
+          .populate('meals')
+          .exec(function (err, foundUser) {
+            foundUser.meals.push(add_meal);
+            foundUser.save();
+            console.log("meal added to user.meals array", foundUser);
+        });
+      } else { //patient has meals
+        //check to see if there's a meal for selected date
+        var index;
+        for (var i = 0; i < foundUserMeals.length; i++) {
+          if ( foundUserMeals[i].date.valueOf() === new Date(req.body.date).setHours(0,0,0,0) ) {
+            // var index = foundUserMeals.indexOf(meal)
+            index = foundUserMeals.indexOf(foundUserMeals[i]);
+            break;
+          }
+        }
+        console.log("as___________________sfsdf", index);
+        //if there is a meal for selected date
+        if (index !== undefined) {
+          console.log("meal already exists for user");
+        } else { //if there isnt a meal for selected date
+          //add meal to db
           var add_meal = new Meal({
-            date: new Date().setHours(0,0,0,0),
+            date: req.body.date,
             user: req.user_id,
             total: 0,
             foods:[]
           });
-
+          console.log("add_meal", add_meal);
           add_meal.save(function (err, add_meal) {
-            console.log("new meal added to meal db")
+            console.log("new meal added to meal db", add_meal);
+            res.send(add_meal);
           });
-
+          //add meal to User
           User
             .findById(req.user_id)
             .populate('meals')
@@ -103,32 +135,62 @@ function addMeal (req, res) {
               foundUser.meals.push(add_meal);
               foundUser.save();
               console.log("meal added to user.meals array", foundUser);
-            });
-          }
-      } else {
-        //...if not, then create new meal for user for current date
-        var add_usermeal = new Meal({
-          date: new Date().setHours(0,0,0,0),
-          user: req.user_id,
-          total: 0,
-          foods:[]
-        });
-
-        add_usermeal.save(function (err, add_usermeal) {
-        });
-
-        //saving meal to User.meals array
-        User
-          .findById(req.user_id)
-          .populate('meals')
-          .exec(function (err, foundUser) {
-            console.log("addmean", foundUser);
-            foundUser.meals.push(add_usermeal);
-            foundUser.save();
           });
+        }
       }
     });
   }
+    //   //if user meal exists...
+    //   if (foundUserMeal.length>0) {
+    //     //check to see if last meal for current date
+    //     if ( foundUserMeal[foundUserMeal.length-1].date.valueOf() === new Date().setHours(0,0,0,0) ) {
+    //       console.log("todays meal already exists for user");
+    //     } else {
+    //       //if not, then add new Meal for current date
+    //       var add_meal = new Meal({
+    //         date: new Date().setHours(0,0,0,0),
+    //         user: req.user_id,
+    //         total: 0,
+    //         foods:[]
+    //       });
+    //
+    //       add_meal.save(function (err, add_meal) {
+    //         console.log("new meal added to meal db")
+    //       });
+    //
+    //       User
+    //         .findById(req.user_id)
+    //         .populate('meals')
+    //         .exec(function (err, foundUser) {
+    //           foundUser.meals.push(add_meal);
+    //           foundUser.save();
+    //           console.log("meal added to user.meals array", foundUser);
+    //         });
+    //       }
+    //   } else {
+    //     //...if not, then create new meal for user for current date
+    //     var add_usermeal = new Meal({
+    //       date: new Date().setHours(0,0,0,0),
+    //       user: req.user_id,
+    //       total: 0,
+    //       foods:[]
+    //     });
+    //
+    //     add_usermeal.save(function (err, add_usermeal) {
+    //     });
+    //
+    //     //saving meal to User.meals array
+    //     User
+    //       .findById(req.user_id)
+    //       .populate('meals')
+    //       .exec(function (err, foundUser) {
+    //         console.log("addmean", foundUser);
+    //         foundUser.meals.push(add_usermeal);
+    //         foundUser.save();
+    //       });
+    //   }
+    // });
+  // }
 
 module.exports = {
   signup: signup,

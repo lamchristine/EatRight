@@ -1,5 +1,5 @@
-FoodsIndexController.$inject = ['FoodService', '$location', '$scope', 'type', '$uibModalInstance', 'date'];
-function FoodsIndexController (FoodService, $location, $scope, type, $uibModalInstance, date) {
+FoodsIndexController.$inject = ['FoodService', 'MealService', '$location', '$scope', 'type', '$uibModalInstance', 'date', 'meal'];
+function FoodsIndexController (FoodService, MealService, $location, $scope, type, $uibModalInstance, date, meal) {
   var vm = this;
   //exports
   // vm.foodList = [];
@@ -9,6 +9,8 @@ function FoodsIndexController (FoodService, $location, $scope, type, $uibModalIn
   // vm.add = add;
   $scope.numberOfPages = numberOfPages;
   $scope.type = type;
+  $scope.meal = meal;
+
 
   $scope.closeModal = function() {
     $uibModalInstance.close();
@@ -46,6 +48,7 @@ function FoodsIndexController (FoodService, $location, $scope, type, $uibModalIn
   //initialization
   console.log(vm.helloWorld);
   console.log(date)
+  // console.log($routeParams)
 
   //implementations
   // function search() {
@@ -58,48 +61,51 @@ function FoodsIndexController (FoodService, $location, $scope, type, $uibModalIn
   //     $scope.pageSize = 5;
   //   });
   // }
-
   $scope.add=function (food) {
     console.log("add food clicked", food);
-    var type = $scope.type;
-    var item_name = food.fields.item_name;
-    var brand_name = food.fields.brand_name;
-    var calories = food.fields.nf_calories;
-    var total_fat = food.fields.nf_total_fat;
-    var serving_size_qty = food.fields.nf_serving_size_qty;
-    var serving_size_unit = food.fields.nf_serving_size_unit;
-    var serving_weight_grams = food.fields.nf_serving_weight_grams;
-    var calories_from_fat = food.fields.nf_calories_from_fat;
-    var carb = food.fields.nf_total_carbohydrate;
-    var protein = food.fields.nf_protein;
-    var fiber = food.fields.nf_dietary_fiber;
-    var sat_fat = food.fields.nf_saturated_fat;
-    var mono_fat = food.fields.nf_monounsaturated_fat;
-    var poly_fat = food.fields.nf_polyunsaturatd_fat;
-    var trans_fat = food.fields.nf_trans_fatty_acid;
-    console.log('item_name', item_name);
+    if ($scope.meal === null) {
+      console.log('creating meal, and food');
+      createMeal(food);
+    } else {
+      console.log('creating food');
+      createFood(food);
+    }
+  };
+
+  function createMeal(food) {
+    MealService.create({
+      date: date
+    })
+    .then(function(data) {
+      console.log('TRYING TO ADD MEAL', data);
+      createFood(food);
+    });
+  }
+
+  function createFood(food) {
     FoodService.create({
       date: date,
-      type: type,
-      item_name: item_name,
-      brand_name: brand_name,
-      calories: calories,
-      total_fat: total_fat,
-      serving_size_qty: serving_size_qty,
-      serving_size_unit: serving_size_unit,
-      serving_weight_grams: serving_weight_grams,
-      calories_from_fat: calories_from_fat,
-      protein: protein,
-      carb: carb,
-      fiber: fiber,
-      sat_fat: sat_fat,
-      mono_fat: mono_fat,
-      poly_fat: poly_fat,
-      trans_fat: trans_fat
+      type: $scope.type,
+      item_name: food.fields.item_name,
+      brand_name: food.fields.brand_name,
+      calories: food.fields.nf_calories,
+      total_fat: food.fields.nf_total_fat,
+      serving_size_qty: food.fields.nf_serving_size_qty,
+      serving_size_unit: food.fields.nf_serving_size_unit,
+      serving_weight_grams: food.fields.nf_serving_weight_grams,
+      calories_from_fat: food.fields.nf_calories_from_fat,
+      protein: food.fields.nf_protein,
+      carb: food.fields.nf_total_carbohydrate,
+      fiber: food.fields.nf_dietary_fiber,
+      sat_fat: food.fields.nf_saturated_fat,
+      mono_fat: food.fields.nf_monounsaturated_fat,
+      poly_fat: food.fields.nf_polyunsaturatd_fat,
+      trans_fat: food.fields.nf_trans_fatty_acid
     })
-      .then(function(data) {
-      console.log('adding food to db', data);
-      vm.food = data;
+    .then(function(data) {
+      console.log('adding food to db', data.data);
+      vm.food = data.data;
+      $uibModalInstance.close(vm.food);
     });
   }
 }

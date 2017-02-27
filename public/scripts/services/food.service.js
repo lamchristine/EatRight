@@ -50,6 +50,7 @@ function FoodService($http, $q, $location) {
 
     function onAddFoodSuccess(response) {
       console.log('food added', response);
+      def.resolve(response);
       $location.path('/profile');
     }
   }

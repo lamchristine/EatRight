@@ -43,6 +43,14 @@ function configRoutes ($routeProvider, $locationProvider) {
         loginRequired: loginRequired
       }
     })
+    // .when('/meals/:id', {
+    //   templateUrl: 'templates/user/profile.html',
+    //   controller: 'ProfileController',
+    //   controllerAs: 'profileCtrl',
+    //   // resolve: {
+    //   //   loginRequired: loginRequired
+    //   // }
+    // })
     .otherwise({
         redirectTo: '/'
     });

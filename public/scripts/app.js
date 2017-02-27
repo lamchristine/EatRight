@@ -13,6 +13,7 @@ angular
   .controller('HomeIndexController', HomeIndexController)
   .service('UserService', UserService)
   .service('FoodService', FoodService)
+  .service('MealService', MealService)
   .config(configRoutes)
   .filter('startFrom', function(){
     return function(input, start) {
