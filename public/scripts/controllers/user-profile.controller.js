@@ -43,7 +43,8 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal, $f
 
       //on page load, show food list for current date
       var currentDate=$filter("date")(new Date(), 'MM-dd-yyyy');
-      vm.SELECTEDDATE = new Date(currentDate);
+      // vm.SELECTEDDATE = new Date(currentDate);
+      vm.SELECTEDDATE = $filter("date")(currentDate, 'MM-dd-yyyy')
       getFoodList(currentDate);
     }
 
@@ -74,6 +75,8 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal, $f
   // }
 
   vm.addFood=function(type) {
+    console.log(vm.SELECTEDDATE)
+    console.log(vm.meal)
     var modalInstance = $uibModal.open({
       controller: 'FoodsIndexController',
       ariaLabelledBy: 'modal-title',
@@ -85,7 +88,7 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal, $f
         type: function() {
             return type;
           },
-        date: vm.SELECTEDDATE,
+        date: new Date(vm.SELECTEDDATE),
         meal: function() {
             return vm.meal;
           },
@@ -120,7 +123,7 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal, $f
   }
 
   function getFoodList(selectedDate) {
-    if(vm.meals.length>1){
+    if(vm.meals.length>0){
       //get meal for selected date
       for (var i = 0; i < vm.meals.length; i++) {
         var mealDate = $filter("date")(vm.meals[i].date, 'MM-dd-yyyy');
@@ -159,12 +162,44 @@ function ProfileController ($location, UserService, $http, $scope, $uibModal, $f
           }
         }
       }
+
+      //add calories per meal type
+      vm.breakfastTotal=0;
+      for (var i = 0; i < vm.breakfastArr.length; i++) {
+        vm.breakfastTotal+=Math.round(vm.breakfastArr[i].calories);
+      }
+      vm.lunchTotal=0;
+      for (var i = 0; i < vm.lunchArr.length; i++) {
+        vm.lunchTotal+=Math.round(vm.lunchArr[i].calories);
+      }
+      vm.dinnerTotal=0;
+      for (var i = 0; i < vm.dinnerArr.length; i++) {
+        vm.dinnerTotal+=Math.round(vm.dinnerArr[i].calories);
+      }
+      vm.snackTotal=0;
+      for (var i = 0; i < vm.snackArr.length; i++) {
+        vm.snackTotal+=Math.round(vm.snackArr[i].calories);
+      }
+
+      //add total calories for the display
+      vm.mealTotal=vm.breakfastTotal + vm.lunchTotal + vm.dinnerTotal + vm.snackTotal;
+
+      //calculate calories left
+      vm.budgetCalorie = 2230;
+      vm.calorieRemaining = vm.budgetCalorie - vm.mealTotal;
+
     }
   }
 
   vm.changeDate=function() {
     console.log(vm.SELECTEDDATE);
     var date = $filter("date")(vm.SELECTEDDATE, 'MM-dd-yyyy');
+    vm.SELECTEDDATE = $filter("date")(vm.SELECTEDDATE, 'MM-dd-yyyy')
     getFoodList(date);
   };
+
+  vm.showDetail=function (index) {
+    console.log(index)
+    vm.showDetail[index]=true
+  }
 }

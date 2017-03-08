@@ -118,6 +118,7 @@ a {
 }
 
 .form input {
+  color: black;
   margin-bottom: 20px;
   width: 100%;
   font-size: 15px;

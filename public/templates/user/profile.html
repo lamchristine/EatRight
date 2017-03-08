@@ -26,22 +26,26 @@
     <div class="background">
 
       <hr>
-      <div style="text-align:center;margin-bottom:20px;overflow:hidden" >{{profileCtrl.SELECTEDDATE}}
-        <input type="text"
-            required
-            ng-change="profileCtrl.changeDate()"
-            style="width:30%;float:left"
-            class="form-control"
-            uib-datepicker-popup='MM-dd-yyyy'
-            ng-model="profileCtrl.SELECTEDDATE"
-            is-open="openedDATE"
-            show-button-bar="false"
-            ng-click="openedDATE=true"
-            datepicker-append-to-body="false"
-            alt-input-formats="altInputFormats" />
-        <span class="input-group-btn" style="float:left">
-          <button type="button" class="btn btn-default" ng-click="openedDATE=true"><i class="glyphicon glyphicon-calendar"></i></button>
-        </span>
+      <div class="header" style="text-align:center;;display:flex;justify-content:center">
+        <!-- <div style="margin-right:-80px;"> -->
+
+          <!-- <div class="" style=""> -->
+          <button type="button" style="border-radius:4px;background: transparent;border: none;" class="btn btn-default" ><i class="glyphicon glyphicon-calendar" style="margin-right:-2px"></i></button>
+          <!-- </div> -->
+          <input type="text"
+              ng-change="profileCtrl.changeDate()"
+              style="width:1px;position:absolute;visibility:hidden"
+              class="form-control"
+              uib-datepicker-popup='MM-dd-yyyy'
+              ng-model="profileCtrl.SELECTEDDATE"
+              is-open="openedDATE"
+              show-button-bar="false"
+              ng-click="openedDATE=true"
+              datepicker-append-to-body="false"
+              alt-input-formats="altInputFormats" />
+        <!-- </div> -->
+        <div style="line-height:34px " ng-click="openedDATE=true">{{profileCtrl.SELECTEDDATE}}</div>
+
       </div>
         <!-- today's date</div> -->
       <hr>
@@ -49,15 +53,15 @@
         <div style="padding-right:10px">
           <div style="background-color:lightgrey;padding:20px;height:auto;overflow:hidden">
             <div style="width:70%;float:left">
-              <span style="font-size:30px;">950</span>
+              <span style="font-size:30px;">{{profileCtrl.mealTotal}}</span>
               <span>calories consumed today</span>
               <div style="background-color:grey;height:5px;margin-top:5px;margin-bottom:5px"></div>
-              <div style="font-size:13px">Budget: 1000Cal</div>
+              <div style="font-size:13px">Budget: {{profileCtrl.budgetCalorie}}Cal</div>
             </div>
             <div style="width:30%;float:left">
               <div style="float:right;height:130px;line-height:0;text-align:center;width:130px;border-radius:50%;background-color:#FFF;display:table;">
                 <div style="display:table-cell;vertical-align:middle;width:100%">
-                  <span style="display:block;font-size:30px;line-height:30px">650</span>
+                  <span style="display:block;font-size:30px;line-height:30px">{{profileCtrl.calorieRemaining}}</span>
                   <span style="display:block;font-size:10px;line-height:10px">CALORIES</span>
                   <span style="display:block;font-size:10px;line-height:10px"> LEFT</span>
                 </div>
@@ -73,16 +77,44 @@
               <div style="margin-left:10px;">BREAKFAST</div>
               <div style="margin-left:10px;;margin-right:10px;font-size:13px">Calories</div>
             </div>
-            <div ng-repeat="breakfast in profileCtrl.breakfastArr">{{breakfast.brand_name}}</div>
-            <div style="margin:20px 10px;font-size:13px"><a href="javascript:void(0)" ng-click="profileCtrl.addFood('breakfast')">Add Food <i class="fa fa-plus"></i></a></div>
+            <div style="background-color:white">
+              <div ng-repeat="breakfast in profileCtrl.breakfastArr" ng-click="showDetail=!showDetail">
+                <div style="display:flex;justify-content:space-between;height:40px;line-height:40px;">
+                  <div style="margin-left:10px;">{{breakfast.item_name}}, {{breakfast.brand_name}}</div>
+                  <div style="margin-left:10px;;margin-right:10px;font-size:13px">{{breakfast.calories}}</div>
+                </div>
+                <div ng-if="showDetail" style="margin-left:10px;">
+                  <div style="color:grey">Serving Size: {{breakfast.serving_size_qty}} {{breakfast.serving_size_unit}} | {{breakfast.serving_weight_grams}}g</div>
+                  <div style="display:inline-block;font-size:10px;color:grey">VIEW</div>
+                  <div style="display:inline-block;font-size:10px;color:grey">|</div>
+                  <div style="display:inline-block;font-size:10px;color:grey">DELETE</div>
+                </div>
+              </div>
+
+
+              <hr style="height:2px;border:none;color:grey;background-color:lightgrey;margin:0">
+              <div style="display:flex;justify-content:space-between;height:40px;line-height:40px;">
+                <div style="margin-left:10px;"><a href="javascript:void(0)" ng-click="profileCtrl.addFood('breakfast')">Add Food <i class="fa fa-plus"></i></a></div>
+                <div style="margin-left:10px;;margin-right:10px;font-size:13px">{{profileCtrl.breakfastTotal}}</div>
+              </div>
+            </div>
           </div>
           <div style="width:100%;">
             <div style="background-color:lightgrey;height:50px;line-height:50px;display:flex;justify-content:space-between">
               <div style="margin-left:10px;">LUNCH</div>
               <div style="margin-left:10px;;margin-right:10px;font-size:13px">Calories</div>
             </div>
-            <div ng-repeat="lunch in profileCtrl.lunchArr">{{lunch.brand_name}}</div>
-            <div style="margin:20px 10px;font-size:13px"><a href="javascript:void(0)" ng-click="profileCtrl.addFood('lunch')">Add Food <i class="fa fa-plus"></i></a></div>
+            <div style="background-color:white">
+              <div style="display:flex;justify-content:space-between;height:40px;line-height:40px;" ng-repeat="lunch in profileCtrl.lunchArr">
+                <div style="margin-left:10px;">{{lunch.brand_name}}</div>
+                <div style="margin-left:10px;;margin-right:10px;font-size:13px">{{lunch.calories}}</div>
+              </div>
+              <hr style="height:2px;border:none;color:grey;background-color:lightgrey;margin:0">
+              <div style="display:flex;justify-content:space-between;height:40px;line-height:40px;">
+                <div style="margin-left:10px;"><a href="javascript:void(0)" ng-click="profileCtrl.addFood('lunch')">Add Food <i class="fa fa-plus"></i></a></div>
+                <div style="margin-left:10px;;margin-right:10px;font-size:13px">{{profileCtrl.lunchTotal}}</div>
+              </div>
+            </div>
           </div>
           <div style="width:100%;">
             <div style="background-color:lightgrey;height:50px;line-height:50px;display:flex;justify-content:space-between">
@@ -90,7 +122,6 @@
               <div style="margin-left:10px;;margin-right:10px;font-size:13px">Calories</div>
             </div>
             <div ng-repeat="dinner in profileCtrl.dinnerArr">{{dinner.brand_name}}</div>
-
             <div style="margin:20px 10px;font-size:13px"><a href="javascript:void(0)" ng-click="profileCtrl.addFood('dinner')">Add Food <i class="fa fa-plus"></i></a></div>
           </div>
           <div style="width:100%;">

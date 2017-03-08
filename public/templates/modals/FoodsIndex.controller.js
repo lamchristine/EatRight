@@ -48,6 +48,7 @@ function FoodsIndexController (FoodService, MealService, $location, $scope, type
   //initialization
   console.log(vm.helloWorld);
   console.log(date)
+  console.log(meal)
   // console.log($routeParams)
 
   //implementations
@@ -63,7 +64,7 @@ function FoodsIndexController (FoodService, MealService, $location, $scope, type
   // }
   $scope.add=function (food) {
     console.log("add food clicked", food);
-    if ($scope.meal === null) {
+    if ( ($scope.meal === null) || ($scope.meal === undefined) ) {
       console.log('creating meal, and food');
       createMeal(food);
     } else {
